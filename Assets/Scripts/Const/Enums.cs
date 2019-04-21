@@ -1,24 +1,82 @@
 using UnityEngine;
 
-namespace Const {
-    public enum UILayer {
+namespace Const
+{
+    /// <summary>
+    /// UI??
+    /// </summary>
+    public enum UILayer
+    {
         BASIC_UI,
-        OVER_LAY,
-        TOP_UI,
+        OVERLAY_UI,
+        TOP_UI
     }
-
-    public enum UIState {
+    /// <summary>
+    /// UI??????
+    /// </summary>
+    public enum UIState
+    {
         NORMAL,
         INIT,
         SHOW,
         HIDE,
     }
 
-    public enum UiId {
+    public enum UiId
+    {
         MainMenu,
         StartGame,
         NewGameWarning,
         Loading
     }
 
+    public enum UiEffect
+    {
+        VIEW_EFFECT,
+        OTHERS_EFFECT
+    }
+
+    public enum SelectedState
+    {
+        SELECTED,
+        UNSELECTED
+    }
+
+    public enum UIAudioName
+    {
+        UI_bg,
+        UI_click,
+        UI_in,
+        UI_logo_in,
+        UI_logo_out,
+        UI_out
+    }
+
+    public enum BgAudioName
+    {
+        Level_Bg
+    }
+
+    public enum DifficultLevel
+    {
+        NONE,
+        EASY,
+        NORMAL,
+        HARD
+    }
+
+    public enum ComicsParentId
+    {
+        LeftComics,
+        CurrentComics,
+        RightComics
+    }
+
+    /// <summary>
+    /// ?????UI????
+    /// </summary>
+    public enum GameUIName
+    {
+        HumanSkill
+    }
 }

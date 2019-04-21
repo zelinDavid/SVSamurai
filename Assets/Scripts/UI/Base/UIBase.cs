@@ -54,7 +54,7 @@ namespace UIFrame {
             gameObject.SetActive (active);
         }
 
-        protected abstract UiId GetUiId ();
+        public abstract UiId GetUiId ();
 
         public abstract List<Transform> GetBtnParents ();
 

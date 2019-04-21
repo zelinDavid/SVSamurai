@@ -6,7 +6,7 @@ namespace UIFrame
     public abstract class OverlayUI : UIBase     
     {
         public override UILayer GetUiLayer(){
-            return UILayer.OVER_LAY;
+            return UILayer.OVERLAY_UI;
         }
     }
 }

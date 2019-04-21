@@ -12,6 +12,10 @@ namespace UIFrame {
         private Action<Transform> InitCallBack;
         private Stack<UIBase> _uiStack = new Stack<UIBase> ();
 
+        private void Awake() {
+         Show(UiId.MainMenu);    
+        }
+
         public Tuple<Transform, Transform> Show(UiId id){
             //根据id实例化对应的view.
             /*
@@ -125,7 +129,7 @@ namespace UIFrame {
 
         private GameObject GetPrefabObject (UiId id) {
             if (!_prefabDictionary.ContainsKey (id) || _prefabDictionary[id] == null) {
-                GameObject prefab = LoadManager.Instance.Load<GameObject> (Path.UI_PATH, id.ToString ());
+                GameObject prefab = LoadManager.Single.Load<GameObject> (Path.UI_PATH, id.ToString ());
                 if (prefab) {
                     _prefabDictionary[id] = Instantiate (prefab);
                 } else {
