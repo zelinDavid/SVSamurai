@@ -7,7 +7,7 @@ namespace Const
         public const string UI_PATH = PREFAB_PATH + "UI/";
         public const string GAME_UI_PATH = PREFAB_PATH + "GameUI/";
         public const string COMICS_PREFAB_PATH = PREFAB_PATH + "Comics/";
-
+        
         public const string COMICS_ITEM_PREFAB_PATH = COMICS_PREFAB_PATH + "ComicsItem";
         public const string HUMAN_SKILL_ITEM_UI_PATH = GAME_UI_PATH + "HumanSkillItem";
 

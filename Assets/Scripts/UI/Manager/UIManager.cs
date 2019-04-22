@@ -13,7 +13,7 @@ namespace UIFrame {
         private Stack<UIBase> _uiStack = new Stack<UIBase> ();
 
         private void Awake() {
-         Show(UiId.MainMenu);    
+           
         }
 
         public Tuple<Transform, Transform> Show(UiId id){
