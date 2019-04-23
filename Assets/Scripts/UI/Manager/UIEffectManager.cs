@@ -8,9 +8,10 @@ namespace UIFrame {
             if (ui == null) {
                 return;
             }
-
-            foreach (UIEffectBase effectBase in ui.GetComponentsInChildren<UIEffectBase> (true)) {
-                effectBase.Enter ();
+            var effects = ui.GetComponentsInChildren<UIEffectBase>(true);
+            
+            foreach (UIEffectBase effectBase in effects) {
+                effectBase.Enter();
             }
         }
 

@@ -70,7 +70,7 @@ namespace UIFrame {
         }
 
         private void InitUi (UIBase view) {
-                Debug.Log("initUI:"+ view.UiState);
+          
             if (view.UiState == UIState.NORMAL) {
                 Transform transform = view.transform;
                 transform.SetParent (GetLayerObject?.Invoke (view.GetUiLayer ()));

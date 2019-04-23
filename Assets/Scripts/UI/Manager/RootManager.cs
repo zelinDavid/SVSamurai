@@ -1,5 +1,6 @@
 using System;
 using Const;
+using Manager;
 using UnityEngine;
 
 namespace UIFrame {
@@ -9,10 +10,11 @@ namespace UIFrame {
         protected UIManager _uiManager;
         protected UILayerManager _layManager;
         protected UIEffectManager _effectManager;
-
+        protected UIAudioManager _audioManager;
         private void Awake () {
             Instance = this;
 
+            _audioManager = gameObject.AddComponent<UIAudioManager>();
             _uiManager = gameObject.AddComponent<UIManager> ();
             _layManager = gameObject.AddComponent<UILayerManager> ();
 
@@ -23,9 +25,12 @@ namespace UIFrame {
             //实例化effectManager,在显示UI的时候，显示对应的effect;隐藏UI的时候隐藏对应的effect.
             _effectManager = gameObject.AddComponent<UIEffectManager>();
             
+            _audioManager.Init(Path.UI_AUDIO_PATH,LoadManager.Single.LoadAll<AudioClip>);
+            _audioManager.PlayBg(UIAudioName.UI_bg.ToString());
+
         }
 
-        private void Start () {
+        private void Start() {
             Show (UiId.MainMenu);
         }
 
@@ -39,7 +44,6 @@ namespace UIFrame {
         public void Back () {
             var uiPara = _uiManager.Back ();
             ExcuteEffect (uiPara);
-             
         }
 
         
@@ -50,18 +54,20 @@ namespace UIFrame {
 
         private void ShowUI (Transform showUI) {
             ShowEffect (showUI);
-
+            ShowUIAudio();
         }
 
         private void HideUI (Transform showUI) {
             HideEffect (showUI);
+            HideUIAudio();
         }
 
         private void ShowEffect (Transform ui) {
+            Debug.LogWarning("showEffect:" + ui);
             if (ui == null) {
-                _effectManager.Show (ui);
-            } else {
                 _effectManager.ShowOthersEffect (_uiManager.GetCurrentUiTrans());
+            } else {
+                _effectManager.Show (ui);
             }
         }
 
@@ -74,6 +80,20 @@ namespace UIFrame {
 
         public void GetCurrentTrans () {
             _uiManager.GetCurrentUiTrans ();
+        }
+
+        private void ShowUIAudio()
+        {
+            _audioManager.Play(UIAudioName.UI_in.ToString());
+        }
+
+        private void HideUIAudio()
+        {
+            _audioManager.Play(UIAudioName.UI_out.ToString());
+        }
+
+        public void PlayAudio(UIAudioName name){
+            _audioManager.Play(name.ToString());
         }
     }
 }

@@ -25,7 +25,7 @@ namespace UIFrame {
 
         protected override void Init() {
             base.Init();
-            transform.AddBtnListener ("StartGame", () => { });
+            transform.AddBtnListener ("StartGame", () => RootManager.Instance.Show(UiId.StartGame));
             transform.AddBtnListener ("DOJO", () => { });
             transform.AddBtnListener ("Help", () => { });
             transform.AddBtnListener ("ExitGame", () => { Application.Quit (); });
@@ -35,7 +35,6 @@ namespace UIFrame {
 
         private void ShowButtons(){
            Transform ui = transform.Find("Buttons");
-       
             ui.DOLocalMoveY( -325f, 0.25f, false);
      
         }

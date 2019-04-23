@@ -21,7 +21,6 @@ namespace UIFrame
         protected override void Show()
         {
             base.Show();
-            //TODO： 上次写到这里
             StartCoroutine(LoadSceneManager.Single.LoadSceneAsync(DataManager.Single.GetSceneName()));
             LoadSceneManager.Single.AllowSwitchScene();
             transform.SetAsLastSibling();

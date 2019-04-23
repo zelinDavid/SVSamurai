@@ -49,6 +49,46 @@ namespace Util
             button.onClick.AddListener(()=> action());
         }
  
+        public static T getOrAddComponent<T>(this Transform transform) where T: Component{
+            T temBehavior = transform.GetComponent<T>();
+            if (temBehavior != null)
+            {
+                return temBehavior ;
+            }else{
+               temBehavior = transform.gameObject.AddComponent<T>();
+               return temBehavior;
+            }
+        } 
 
+        public static Image Image(this Transform transform)
+        {
+            var image = transform.GetComponent<Image>();
+
+            if (image != null)
+            {
+                return image;
+            }
+            else
+            {
+                Debug.LogError("can not find Image");
+                return null;
+            }
+        }
+
+        public static Button Button(this Transform transform)
+        {
+            var button = transform.GetComponent<Button>();
+
+            if (button != null)
+            {
+                return button;
+            }
+            else
+            {
+                Debug.LogError("can not find Image");
+                return null;
+            }
+        }
+        
     }
 }

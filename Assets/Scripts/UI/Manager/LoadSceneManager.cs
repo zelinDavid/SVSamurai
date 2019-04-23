@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 using Util;
 
 namespace UIFrame {
-    public class LoadSceneManager:SingletonBase<LoadSceneManager>{
-        
+    public class LoadSceneManager : SingletonBase<LoadSceneManager> {
+
         private AsyncOperation _operation;
 
         public async void AllowSwitchScene () {
