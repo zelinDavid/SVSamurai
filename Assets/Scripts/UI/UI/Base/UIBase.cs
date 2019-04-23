@@ -9,21 +9,22 @@ namespace UIFrame {
             get { return _uiState; }
 
             set {
-
-                _uiState = value;
+                HandleUiState(value);
+                 _uiState = value;
+                Debug.Log("UIBase SetUIState:" + value);
             }
         }
 
         private void HandleUiState (UIState value) {
             switch (value) {
                 case  UIState.INIT:
-                    if (value == UIState.NORMAL)
+                    if (_uiState == UIState.NORMAL)
                     {
                         Init();
                     }
                     break;
                 case  UIState.SHOW:
-                     if (value == UIState.NORMAL)
+                     if (_uiState == UIState.NORMAL)
                     {
                         Init();
                         Show();

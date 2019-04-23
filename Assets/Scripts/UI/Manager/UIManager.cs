@@ -45,6 +45,8 @@ namespace UIFrame {
             }
              view.UiState = UIState.SHOW;
 
+            _uiStack.Push(view);
+
             return new Tuple<Transform,Transform>(prefab.transform,hideUI);
         }
 
@@ -68,6 +70,7 @@ namespace UIFrame {
         }
 
         private void InitUi (UIBase view) {
+                Debug.Log("initUI:"+ view.UiState);
             if (view.UiState == UIState.NORMAL) {
                 Transform transform = view.transform;
                 transform.SetParent (GetLayerObject?.Invoke (view.GetUiLayer ()));
@@ -81,7 +84,7 @@ namespace UIFrame {
         }
 
         public Transform GetCurrentUiTrans () {
-            return _uiStack.Peek ().transform;
+            return _uiStack.Peek().transform;
         }
 
         public Transform GetBaiscUiTrans () {
@@ -140,11 +143,11 @@ namespace UIFrame {
         }
 
         private UIBase GetUIScript (GameObject prefab, UiId id) {
-            UIBase uiBase = prefab.GetComponent<UIBase> ();
+            UIBase uiBase = prefab.GetComponent<UIBase>();
             if (!uiBase) {
                 //添加对应的UI,并返回
 
-                return AddUiScript (prefab, id);
+                return AddUiScript(prefab, id);
             }
             return uiBase;
         }

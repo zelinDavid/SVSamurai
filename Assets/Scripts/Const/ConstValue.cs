@@ -20,16 +20,16 @@ namespace Const
         public const string GAME_PART_WALL = "Wall";
         public const string GAME_PART_SPWAN_POINT = "SpawnPoint";
 
-        public const string Canvas = "Canvas";
+        public const string CANVAS = "Canvas";
         
         
         //ani para name
         /// <summary>
-        /// ��Ҷ�����������
+        /// ��Ҷ�����������?
         /// </summary>
         public const string PLAYER_PARA_NAME = "AniIndex";
         /// <summary>
-        /// ��Ҽ��ܶ�����������
+        /// ��Ҽ��ܶ�����������?
         /// </summary>
         public const string SKILL_PARA_NAME = "Skill";
         /// <summary>

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Const;
 using UnityEngine;
 using Util;
+using DG.Tweening;
 
 namespace UIFrame {
     public class MainMenuView : BasicUI {
@@ -22,12 +23,21 @@ namespace UIFrame {
             return UiId.MainMenu;
         }
 
-        protected override void Init () {
-            base.Init ();
+        protected override void Init() {
+            base.Init();
             transform.AddBtnListener ("StartGame", () => { });
             transform.AddBtnListener ("DOJO", () => { });
             transform.AddBtnListener ("Help", () => { });
             transform.AddBtnListener ("ExitGame", () => { Application.Quit (); });
+            Invoke("ShowButtons", 0.25f);
+            
+        }
+
+        private void ShowButtons(){
+           Transform ui = transform.Find("Buttons");
+       
+            ui.DOLocalMoveY( -325f, 0.25f, false);
+     
         }
     }
 }

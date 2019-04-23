@@ -1,3 +1,5 @@
+using System;
+using Const;
 using UnityEngine;
 
 namespace UIFrame {
@@ -16,28 +18,62 @@ namespace UIFrame {
 
             _uiManager.AddGetLayerObjectListener (_layManager.GetLayerObject);
             _uiManager.AddInitCallBackListener ((uiTrans) => {
-
+                
             });
             //实例化effectManager,在显示UI的时候，显示对应的effect;隐藏UI的时候隐藏对应的effect.
-            _effectManager = gameObject.AddComponent<UIEffectManager> ();
-
+            _effectManager = gameObject.AddComponent<UIEffectManager>();
+            
         }
 
         private void Start () {
+            Show (UiId.MainMenu);
+        }
 
+        public void Show (UiId id) {
+            var uiPara = _uiManager.Show(id);
+            ExcuteEffect (uiPara);
+
+            // ShowBtnState(uiPara.Item1);
+        }
+
+        public void Back () {
+            var uiPara = _uiManager.Back ();
+            ExcuteEffect (uiPara);
+             
+        }
+
+        
+        private void ExcuteEffect (Tuple<Transform, Transform> uiPara) {
+            ShowUI (uiPara.Item1);
+            HideUI (uiPara.Item2);
+        }
+
+        private void ShowUI (Transform showUI) {
+            ShowEffect (showUI);
+
+        }
+
+        private void HideUI (Transform showUI) {
+            HideEffect (showUI);
         }
 
         private void ShowEffect (Transform ui) {
-            _effectManager.Show(ui);
-            //TODO:老爷你上次写到这儿。。
+            if (ui == null) {
+                _effectManager.Show (ui);
+            } else {
+                _effectManager.ShowOthersEffect (_uiManager.GetCurrentUiTrans());
+            }
         }
 
         private void HideEffect (Transform ui) {
-            _effectManager.HideOthersEffect (ui);
+            if (ui == null) {
+                _effectManager.HideOthersEffect (_uiManager.GetBaiscUiTrans ());
+            } else { }
+            _effectManager.Hide (ui);
         }
 
         public void GetCurrentTrans () {
-            _uiManager.GetCurrentUiTrans();
+            _uiManager.GetCurrentUiTrans ();
         }
     }
 }

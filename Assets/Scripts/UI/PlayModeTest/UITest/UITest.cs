@@ -22,7 +22,7 @@ namespace Tests {
         // `yield return null;` to skip a frame.
         [UnityTest]
         public IEnumerator UITestWithEnumeratorPasses () {
-            GameObject canvas = LoadManager.Single.LoadAndInstaniate (Path.PREFAB_PATH + ConstValue.Canvas, null);
+            GameObject canvas = LoadManager.Single.LoadAndInstaniate (Path.PREFAB_PATH + ConstValue.CANVAS, null);
             GameObject base_layer = GameObject.Find ("BASIC_UI");
             UIManager uiManager = canvas.AddComponent<UIManager> ();
             UILayerManager _layerManager = canvas.AddComponent<UILayerManager> ();
@@ -33,7 +33,7 @@ namespace Tests {
             // yield return new WaitForSeconds (5);
             // uiManager.Show (UiId.NewGameWarning);
             // yield return new WaitForSeconds (5);
-            // uiManager.Back ();
+            // uiManager.Back();
             // yield return new WaitForSeconds (5);
             
             Debug.Log ("finishShow");
