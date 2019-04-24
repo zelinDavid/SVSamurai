@@ -17,6 +17,10 @@ namespace UIFrame {
         /// </summary>
         /// <param name="parents"></param>
         public void InitBtnParent(List<Transform> parents) {
+            if (parents == null || parents.Count == 0)
+            {
+                return;
+            }
             for (int i = 0; i < parents.Count; i++) {
                 BtnParent btnParent = parents[i].gameObject.AddComponent<BtnParent>();
                 btnParent.Init(i);
