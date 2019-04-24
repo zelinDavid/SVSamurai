@@ -56,9 +56,9 @@ namespace UIFrame {
         }
 
         public bool Left() {
-            Index--;
-            if (Index >= 0) {
-                Selected(childs[Index].transform);
+            _childId--;
+            if (_childId >= 0) {
+                Selected(childs[_childId].transform);
                 return true;
             } else {
                 _childId = 0;

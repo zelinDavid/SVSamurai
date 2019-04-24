@@ -60,10 +60,9 @@ namespace UIFrame {
             //TODO:上次写到这里
         }
 
-        public void SelectedButton () {
-            if (transform.Button().onClick != null)
-            {
-                 transform.Button().onClick.Invoke ();
+        public void SelectedButton() {
+            if (transform.Button().onClick != null) {
+                transform.Button().onClick.Invoke();
             }
         }
 
