@@ -5,10 +5,12 @@ using Const;
 
 using UnityEngine;
 using UnityEngine.UI;
-
+//父方法
+ 
 namespace Util {
     public static class ExtendUtil {
-
+        static System.Diagnostics.StackTrace ss = new System.Diagnostics.StackTrace(true);
+        static System.Reflection.MethodBase mb = ss.GetFrame(1).GetMethod();    
         public static RectTransform RectTransform(this Transform transform) {
             var rect = transform.GetComponent<RectTransform>();
             if (rect) {
@@ -96,5 +98,9 @@ namespace Util {
             return component;
         }
 
+        public static void UtilDebugLog(this UnityEngine.Object obj, int type = 0){
+            //  mb.DeclaringType.Name
+            //TODO: 你上次写到这里
+        }
     }
 }

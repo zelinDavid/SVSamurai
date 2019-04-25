@@ -1,19 +1,46 @@
+using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 
-namespace UIFrame
-{
-    public class sampleTest : MonoBehaviour     
-    {
-        public void Start()         
-        {
-           Invoke("Test", 1);
+namespace UIFrame {
+    public class sampleTest : MonoBehaviour {
+        public string GetMethodInfo() {
+            string str = "";
+
+            //取得当前方法命名空间    
+            str += "命名空间名:" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Namespace + "\n";
+
+            //取得当前方法类全名 包括命名空间    
+            str += "类名:" + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName + "\n";
+
+            //取得当前方法名    
+            str += "方法名:" + System.Reflection.MethodBase.GetCurrentMethod().Name + "\n";
+            str += "\n";
+
+            //父方法
+            System.Diagnostics.StackTrace ss = new System.Diagnostics.StackTrace(true);
+            System.Reflection.MethodBase mb = ss.GetFrame(1).GetMethod();
+
+            //取得父方法命名空间    
+            str += mb.DeclaringType.Namespace + "\n";
+
+            //取得父方法类名    
+            str += mb.DeclaringType.Name + "\n";
+
+            //取得父方法类全名    
+            str += mb.DeclaringType.FullName + "\n";
+
+            //取得父方法名    
+            str += mb.Name + "\n";
+            return str;
         }
 
-        void Test(){
-            Transform button = transform.Find("Continue");
-            Debug.Log(button);
-            button.localScale = Vector3.one * 2;
+        public void Start() {
 
+            var ret = GetMethodInfo();
+            Debug.Log(ret);
         }
+
     }
 }

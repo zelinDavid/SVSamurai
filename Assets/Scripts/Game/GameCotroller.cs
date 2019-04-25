@@ -12,5 +12,10 @@ namespace Game {
         //    _systems = new  
             
         }
+
+
+        void InitManager(){
+            
+        }
     }
 }

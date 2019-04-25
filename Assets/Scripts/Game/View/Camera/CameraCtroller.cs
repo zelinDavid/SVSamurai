@@ -31,6 +31,7 @@ namespace Game {
         private Camera _camera;
         private Dictionary<CameraParent, Transform> _parentDic = new Dictionary<CameraParent, Transform>();
 
+        
         public override void Init(Contexts contexts, Entitas.IEntity entity) {
             base.Init(contexts, entity);
 
