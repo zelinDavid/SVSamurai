@@ -58,7 +58,7 @@ namespace CustomTool
             script.WriteEmptyLine();
             var data = AddNamespaceWindow.GetData();
             string name = data == null ? "UIFrame" : data.name;
-            script.WriteNamespace("UIFrame");
+            script.WriteNamespace(name);
 
             script.IndentTimes++;
             script.WriteClass(className, "MonoBehaviour");

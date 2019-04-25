@@ -3,37 +3,37 @@ using UnityEngine;
 namespace Game
 {
     /// <summary>
-    /// �������״̬����
+    /// 相机动画状态名称
     /// </summary>
     public enum CameraAniName
     {
         NULL,
         /// <summary>
-        /// �����������
+        /// 开场相机动画
         /// </summary>
         START_GAME_ANI,
         SHAKE_ANI,
         /// <summary>
-        /// ������涯��
+        /// 相机跟随动画
         /// </summary>
         FOLLOW_PLAYER
     }
 
     /// <summary>
-    /// ���������
+    /// 相机父物体
     /// </summary>
     public enum CameraParent
     {
         START,
         IN_GAME,
         /// <summary>
-        /// ������涯��
+        /// 相机跟随动画
         /// </summary>
         FOLLOW_PLAYER
     }
 
     /// <summary>
-    /// �ؿ�ID
+    /// 关卡ID
     /// </summary>
     public enum LevelID
     {
@@ -42,7 +42,7 @@ namespace Game
     }
 
     /// <summary>
-    /// �ؿ���Ϸ���ִ�����ID
+    /// 关卡游戏部分大区域ID
     /// </summary>
     public enum LevelGamePartID
     {
@@ -54,7 +54,7 @@ namespace Game
     }
 
     /// <summary>
-    /// �ؿ���Ϸ����С����ID
+    /// 关卡游戏部分小区域ID
     /// </summary>
     public enum LevelPartID
     {
@@ -63,7 +63,7 @@ namespace Game
     }
 
     /// <summary>
-    /// ���밴ť
+    /// 输入按钮
     /// </summary>
     public enum InputButton
     {
@@ -77,7 +77,7 @@ namespace Game
     }
 
     /// <summary>
-    /// ���밴���İ���״̬
+    /// 输入按键的按下状态
     /// </summary>
     public enum InputState
     {
@@ -88,7 +88,7 @@ namespace Game
     }
 
     /// <summary>
-    /// ��Ϸ״̬
+    /// 游戏状态
     /// </summary>
     public enum GameState
     {
@@ -98,7 +98,7 @@ namespace Game
     }
 
     /// <summary>
-    /// ��������AniIndex��Ӧö��
+    /// 动画参数AniIndex对应枚举
     /// </summary>
     public enum PlayerAniIndex
     {
@@ -108,7 +108,7 @@ namespace Game
     }
 
     /// <summary>
-    /// ������Ϊ
+    /// 人物行为
     /// </summary>
     public enum PlayerBehaviourIndex
     {
@@ -119,7 +119,7 @@ namespace Game
     }
 
     /// <summary>
-    /// ״̬������Ϊ״̬
+    /// 状态机的行为状态
     /// </summary>
     public enum BehaviorState
     {
@@ -129,19 +129,19 @@ namespace Game
     }
 
     /// <summary>
-    /// ��ʱ����ʶ
+    /// 计时器标识
     /// </summary>
     public enum TimerId
     {
         MOVE_TIMER,
         /// <summary>
-        /// �ж����＼���Ƿ���Ч��ʱ��
+        /// 判断人物技能是否有效计时器
         /// </summary>
         JUDGE_SKILL_TIMER
     }
 
     /// <summary>
-    /// ��Ч����ͳһ����
+    /// 音效部分统一名称
     /// </summary>
     public enum AudioName
     {
@@ -154,15 +154,15 @@ namespace Game
     public enum EnemyId
     {
         /// <summary>
-        /// ��սС��
+        /// 近战小怪
         /// </summary>
         EnemyPeasant,
         /// <summary>
-        /// ������
+        /// 弓箭手
         /// </summary>
         EnemyBowman,
         /// <summary>
-        /// ��ս��Ӣ��
+        /// 近战精英怪
         /// </summary>
         EnemySwordsman,
         /// <summary>

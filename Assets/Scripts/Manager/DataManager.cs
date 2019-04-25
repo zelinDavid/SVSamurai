@@ -30,7 +30,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// �ؿ����ݱ�� Ĭ����1
+        /// 关卡数据标记 默认是1
         /// </summary>
         public LevelID LevelIndex
         {
@@ -44,7 +44,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// �ؿ��ĵڼ����ֵı�� Ĭ����1
+        /// 关卡的第几部分的标记 默认是1
         /// </summary>
         public LevelGamePartID LevelGamePartIndex
         {
@@ -58,7 +58,7 @@ namespace Manager
         }
 
         /// <summary>
-        /// �ؿ��ĵڼ����ֵı�� Ĭ����1
+        /// 关卡的第几部分的标记 默认是1
         /// </summary>
         public LevelPartID LevelPartIndex
         {

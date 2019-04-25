@@ -86,5 +86,15 @@ namespace Util {
             }
             return obj;
         }
+
+        public static T UtilGetComponentInChildren<T>(this Transform transform) {
+            T component = transform.gameObject.GetComponentInChildren<T>();
+ 
+            if (component == null) {
+                Debug.LogError("UtilGetComponentInChildren can't get by name:" +  typeof(T));
+            }
+            return component;
+        }
+
     }
 }
