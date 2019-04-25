@@ -59,8 +59,10 @@ namespace UIFrame {
         }
 
         private List<Sprite> GetSprites() {
-            var path = Path.COMICS_PATH + DataManager.Single.LevelIndex.ToString("00");
-            return LoadManager.Single.LoadAll<Sprite>(path).ToList();
+            var path = Path.COMICS_PATH + ((int)DataManager.Single.LevelIndex).ToString("00");
+            var sprits = LoadManager.Single.LoadAll<Sprite>(path).ToList();
+            Debug.Log("getSprites" + sprits.Count);
+            return sprits;
         }
 
         private void InitParent() {
@@ -83,22 +85,30 @@ namespace UIFrame {
         }
 
         private void InitButtons() {
-            transform.AddBtnListener("", Back);
+      
             transform.AddBtnListener("Back", Back);
-            transform.AddBtnListener("Left", LeftBtn);
-            transform.AddBtnListener("Right", RightBtn);
+            transform.AddBtnListener("Left", RightBtn);
+            transform.AddBtnListener("Right", LeftBtn);
             transform.AddBtnListener("Done", () => {
-                LoadSceneManager.Single.LoadSceneAsync(DataManager.Single.GetSceneName());
+                StartCoroutine(LoadSceneManager.Single.LoadSceneAsync(DataManager.Single.GetSceneName()));
                 LoadSceneManager.Single.AllowSwitchScene();
             });
         }
 
         private void LeftBtn() {
+            if(_rightStack.Count == 0)
+                return;
+
             var item = Move(ComicsParentId.LeftComics);
             _comicsPage.ShowNum(item.Page);
         }
 
         private void RightBtn() {
+            if (_leftStack.Count == 0)
+            {
+                return;
+            }
+
             var item = Move(ComicsParentId.RightComics);
             _comicsPage.ShowNum(item.Page);
 

@@ -57,7 +57,7 @@ namespace UIFrame {
 
         private void CancelSelected() {
             KillEffect(transform);
-            //TODO:上次写到这里
+     
         }
 
         public void SelectedButton() {

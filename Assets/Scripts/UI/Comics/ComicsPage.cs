@@ -10,7 +10,7 @@ namespace UIFrame {
 
       private void Start() {
          numSprits = GetComponent<NumSprites>().numSprits;
-         _indexImage = transform.Find("index").Image();
+         _indexImage = transform.Find("Index").Image();
 
       }
 

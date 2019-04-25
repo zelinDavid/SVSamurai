@@ -16,10 +16,7 @@ namespace UIFrame
             transform.RectTransform().DOKill();
             transform.DOScale(Vector3.one * 2, 0.25f);
             transform.RectTransform().DOAnchorPos(_defaultAncherPos,time).OnComplete(()=>_onExitComplete?.Invoke());
-            //TODO:playAudio
-
-            // Invoke("Exist", 2f);
-            // Debug.LogWarning("GameNameEffect enter");
+       
         }
 
         public override void Exist()

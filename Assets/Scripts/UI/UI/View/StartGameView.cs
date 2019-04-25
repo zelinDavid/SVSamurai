@@ -12,7 +12,7 @@ using Util;
 namespace UIFrame {
     public class StartGameView : BasicUI {
         public override List<Transform> GetBtnParents() {
-            //TODO:获取transform中btnParent.
+    
             var list = new List<Transform>();
             list.Add(transform.GetBtnParent());
             return list;
