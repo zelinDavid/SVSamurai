@@ -1,21 +1,58 @@
 using Entitas;
-
+using Game.Service;
+using Manager;
 using UnityEngine;
+using Util;
 
 namespace Game {
     public class GameCotroller : MonoBehaviour {
         Systems _systems;
         Contexts _contexts;
+        IServiceManager _serviceManager;
+
 
         private void Awake() {
             _contexts = Contexts.sharedInstance;
-        //    _systems = new  
+        
+            InitManager();
+
+            _systems = new InitFeature(_contexts);
             
+            LoadAudioManager.Single.Init();
         }
 
-
         void InitManager(){
-            
+            GameParentManager parentManager = transform.getOrAddComponent<GameParentManager>();
+            parentManager.Init();
+
+            var cameraTransform = parentManager.GetParentTrans(ParentName.CameraController);
+            CameraCtroller cameraCtroller = cameraTransform.getOrAddComponent<CameraCtroller>();
+            GameEntity entity = _contexts.game.SetGameCameraState(CameraAniName.NULL);
+            cameraCtroller.Init(_contexts,entity);
+
+            _serviceManager = new ServiceManager(parentManager);
+            _serviceManager.Init(_contexts);
+
+            ModelManager.Single.Init();
+
+            var uiControllerView = parentManager.GetParentTrans(ParentName.UIController);
+            if (!uiControllerView.UtilDebugLogNull())
+            {
+               UIController uiController = uiControllerView.getOrAddComponent<UIController>();
+               uiController.Init();
+            }
+        }
+
+        private void Update()
+        {
+            _serviceManager.Execute();
+            _systems.Execute();
+            _systems.Cleanup();
+        }
+
+        private void OnDestroy()
+        {
+            _systems.TearDown();
         }
     }
 }

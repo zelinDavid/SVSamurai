@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Const
 {
     /// <summary>
-    /// UI??
+    /// UI层级
     /// </summary>
     public enum UILayer
     {
@@ -12,7 +12,7 @@ namespace Const
         TOP_UI
     }
     /// <summary>
-    /// UI??????
+    /// UI运行状态
     /// </summary>
     public enum UIState
     {
@@ -73,7 +73,7 @@ namespace Const
     }
 
     /// <summary>
-    /// ?????UI????
+    /// 游戏内UI名称
     /// </summary>
     public enum GameUIName
     {
