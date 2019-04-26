@@ -9,17 +9,20 @@
 public static class GameComponentsLookup {
 
     public const int GameCameraState = 0;
-    public const int GameCameraStateListener = 1;
+    public const int GamePlayer = 1;
+    public const int GameCameraStateListener = 2;
 
-    public const int TotalComponents = 2;
+    public const int TotalComponents = 3;
 
     public static readonly string[] componentNames = {
         "GameCameraState",
+        "GamePlayer",
         "GameCameraStateListener"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Game.CameraState),
+        typeof(Game.PlayerComponent),
         typeof(GameCameraStateListenerComponent)
     };
 }

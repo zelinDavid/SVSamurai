@@ -17,6 +17,5 @@ namespace Game
         bool IsCollideWall{set; get;}
         bool IsAttack{get;}
         void Attack(int skillCode);
-        
     }
 }
