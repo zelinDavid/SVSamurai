@@ -38,7 +38,11 @@ namespace Game.Service {
 
         IInitService[] InitServices(GameParentManager parentManager) {
             IInitService[] services = {
-                new FindObjectService()
+                new FindObjectService(),
+
+                new EntitasInputService(),
+
+                new UnityInputService()
             };
             return services;
         }
