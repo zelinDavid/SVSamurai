@@ -6,11 +6,11 @@ using Const;
 using UnityEngine;
 using UnityEngine.UI;
 //父方法
- 
+
 namespace Util {
     public static class ExtendUtil {
         static System.Diagnostics.StackTrace ss = new System.Diagnostics.StackTrace(true);
-        static System.Reflection.MethodBase mb = ss.GetFrame(1).GetMethod();    
+        static System.Reflection.MethodBase mb = ss.GetFrame(1).GetMethod();
         public static RectTransform RectTransform(this Transform transform) {
             var rect = transform.GetComponent<RectTransform>();
             if (rect) {
@@ -91,16 +91,28 @@ namespace Util {
 
         public static T UtilGetComponentInChildren<T>(this Transform transform) {
             T component = transform.gameObject.GetComponentInChildren<T>();
- 
+
             if (component == null) {
-                Debug.LogError("UtilGetComponentInChildren can't get by name:" +  typeof(T));
+                Debug.LogError("UtilGetComponentInChildren can't get by name:" + typeof(T));
             }
             return component;
         }
 
-        public static void UtilDebugLog(this UnityEngine.Object obj, int type = 0){
-            //  mb.DeclaringType.Name
-            //TODO: 你上次写到这里
+        public static bool UtilDebugLogNull(this System.Object obj, int type = 1, bool debug = true) {
+
+            if (obj == null) {
+                var methodName = mb.DeclaringType.Name + "." + mb.Name;
+                methodName = methodName + " fail";
+                if (debug) {
+                    if (type == 0) {
+                        Debug.Log(methodName);
+                    } else {
+                        Debug.LogWarning(methodName);
+                    }
+                }
+                return true;
+            }
+            return false;
         }
     }
 }
