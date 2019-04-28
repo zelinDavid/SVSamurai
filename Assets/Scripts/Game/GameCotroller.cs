@@ -20,6 +20,14 @@ namespace Game {
             _systems.Initialize();
 
             LoadAudioManager.Single.Init();
+        
+            Invoke("Test", 2);
+        }
+
+        void Test(){
+            
+
+             
         }
 
         void InitManager(){
@@ -43,6 +51,8 @@ namespace Game {
                UIController uiController = uiControllerView.getOrAddComponent<UIController>();
                uiController.Init();
             }
+
+            _contexts.game.SetGameTestOne(1);
         }
 
         private void Update()
@@ -56,5 +66,7 @@ namespace Game {
         {
             _systems.TearDown();
         }
+
+      
     }
 }

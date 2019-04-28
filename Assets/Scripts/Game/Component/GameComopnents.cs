@@ -23,5 +23,9 @@ namespace Game
         public IPlayerAudio Audio;
     }
 
-
+ [Game,Event(EventTarget.Self), Unique]
+    public class TestOne: IComponent
+    {
+       public int one;
+    } 
 }

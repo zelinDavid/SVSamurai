@@ -6,9 +6,13 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using UnityEngine;
+
 public sealed class GameEventSystems : Feature {
 
     public GameEventSystems(Contexts contexts) {
         Add(new GameCameraStateEventSystem(contexts)); // priority: 0
+        Add(new GameTestOneEventSystem(contexts)); // priority: 0
+   
     }
 }

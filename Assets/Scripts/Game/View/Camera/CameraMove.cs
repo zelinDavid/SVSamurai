@@ -14,14 +14,13 @@ namespace Game {
             transform.localEulerAngles = Vector3.zero;
         }
 
-        public void Move(Transform transform, Action callBack) {
-            SetParent(transform);
+        public void Move(Transform parent, Action callBack) {
+            SetParent(parent);
             float time = 2;
 
             transform.DOKill();
             transform.DOLocalMove(Vector3.zero, time);
             transform.DOLocalRotate(Vector3.zero, time).OnComplete(()=> callBack?.Invoke());
-            Debug.Log("cameRaMove  Log");
         }
 
         public void SetParent(Transform parent) {
