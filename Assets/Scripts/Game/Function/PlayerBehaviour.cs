@@ -1,5 +1,7 @@
 using System;
+
 using DG.Tweening;
+
 using Model;
 
 using UnityEngine;
@@ -64,14 +66,13 @@ namespace Game {
 
         private void PlayerOrientation(Vector3 direction) {
             var degree = Math.Abs((_playerTrans.eulerAngles - direction).y);
-            if (degree == 90)
-            {
+            if (degree == 90) {
                 _playerTrans.DORotate(direction, 0.3f);
-            }else {
+            } else {
                 _playerTrans.eulerAngles = direction;
             }
         }
-        
+
         public void TrunRight() {
             if (IsAttack)
                 return;
