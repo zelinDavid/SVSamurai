@@ -11,7 +11,7 @@ namespace Game {
         }
 
         public void CleanupFun(Contexts contexts) {
-            throw new System.NotImplementedException();
+            
         }
 
         public void ExecuteFun(Contexts contexts) {

@@ -21,6 +21,7 @@ namespace Game {
             transform.DOKill();
             transform.DOLocalMove(Vector3.zero, time);
             transform.DOLocalRotate(Vector3.zero, time).OnComplete(()=> callBack?.Invoke());
+            Debug.Log("cameRaMove  Log");
         }
 
         public void SetParent(Transform parent) {

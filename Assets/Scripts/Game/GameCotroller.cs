@@ -17,7 +17,8 @@ namespace Game {
             InitManager();
 
             _systems = new InitFeature(_contexts);
-            
+            _systems.Initialize();
+
             LoadAudioManager.Single.Init();
         }
 
@@ -26,6 +27,7 @@ namespace Game {
             parentManager.Init();
 
             var cameraTransform = parentManager.GetParentTrans(ParentName.CameraController);
+            Debug.Log("CameraController:" + cameraTransform);
             CameraCtroller cameraCtroller = cameraTransform.getOrAddComponent<CameraCtroller>();
             GameEntity entity = _contexts.game.SetGameCameraState(CameraAniName.NULL);
             cameraCtroller.Init(_contexts,entity);

@@ -38,6 +38,15 @@ namespace Game {
             InitParent();
             InitGameCamera();
             InitFollowPlayer();
+
+            // Test();
+            contexts.game.ReplaceGameCameraState(CameraAniName.FOLLOW_PLAYER);
+
+        }
+
+        private void Test(){
+            _entity.ReplaceGameCameraState(CameraAniName.START_GAME_ANI);
+     
         }
 
         private void InitParent() {
@@ -91,12 +100,13 @@ namespace Game {
 
         public void OnGameCameraState(GameEntity entity, CameraAniName state) {
             Transform parnet = null;
+            Debug.Log(state + ": OnGameCameraState");
             switch (state) {
-                case CameraAniName.FOLLOW_PLAYER:
+                case CameraAniName.START_GAME_ANI:
                     parnet = GetCameraParent(CameraParent.IN_GAME);
                     if (parnet != null) _cameraMove.Move(parnet, StartAniCallBack);
                     break;
-                case CameraAniName.START_GAME_ANI:
+                case CameraAniName.FOLLOW_PLAYER: 
                     parnet = GetCameraParent(CameraParent.FOLLOW_PLAYER);
                     if (parnet != null) _cameraMove.Move(parnet, null);
                     break;
