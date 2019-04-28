@@ -1,5 +1,4 @@
 using Manager;
-
 using UnityEngine;
 
 namespace Game.Service {
@@ -68,10 +67,30 @@ namespace Game.Service {
         */
 
         public void LoadPlayer() {
-            var player = LoadAndInstaniate(Path.PLAYER_PREFAB , _parentManager.GetParentTrans(ParentName.PlayerRoot));
+            var player = LoadAndInstaniate(Path.PLAYER_PREFAB, _parentManager.GetParentTrans(ParentName.PlayerRoot));
+            player.AddComponent<IgnorForce>();
+            player.AddComponent<PlayerCollider>();
 
+            // public class PlayerComponent:IComponent
+            //     {
+            //         public IView Player;
+            //         public IPlayerBehaviour Behavior;
+            //         public IPlayerAni Ani;
+            //         public IPlayerAudio Audio;
+            //     }
+            IView view = player.AddComponent<PlayerView>();
 
-            
+            IPlayerBehaviour playerBehavior = new PlayerBehaviour(player.transform, ModelManager.Single.PlayerData);
+            IPlayerAni ani = null;
+            IPlayerAudio audio = new PlayerAudio(player.GetComponentInChildren<AudioSource>());
+
+            Animator animator = player.GetComponent<Animator>();
+            if (animator == null)
+            {
+                Debug.LogError("玩家与智商为发现动画组件");
+            }else{
+                animator = 
+            }
         }
     }
 }

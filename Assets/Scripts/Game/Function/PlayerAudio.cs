@@ -23,12 +23,7 @@ namespace Game {
                 _times = 0;
             }
         }
-
-        public PlayerAudio(bool isCollideWall, bool isAttack) {
-            this.IsCollideWall = isCollideWall;
-            this.IsAttack = isAttack;
-
-        }
+ 
         public bool IsCollideWall { get; set; }
 
         public bool IsAttack { get; }
