@@ -32,14 +32,14 @@ namespace Game.Service {
             //foreach 字典，每一个键值对打印顺序和加入顺序一致，所以需要排序
 
             var list = from service in _initServices orderby service.Key select service;
-            _initServices = list.ToDictionary(pair => pair.Key, pair=> pair.Value);
-            
+            _initServices = list.ToDictionary(pair => pair.Key, pair => pair.Value);
+
         }
 
         IInitService[] InitServices(GameParentManager parentManager) {
             IInitService[] services = {
                 new FindObjectService(),
-
+                new LogService(),
                 new EntitasInputService(),
 
                 new UnityInputService()
@@ -47,7 +47,6 @@ namespace Game.Service {
             return services;
         }
 
- 
         void AddInitServices(IInitService[] services) {
             IInitService service;
             int priority;
@@ -67,30 +66,27 @@ namespace Game.Service {
             IExcuteService service;
             for (int i = 0; i < services.Length; i++) {
                 service = services[i] as IExcuteService;
-                if(service == null) continue;
+                if (service == null) continue;
                 _excuteServices.Add(service);
             }
         }
 
         public void Execute() {
-            foreach (IExcuteService service in _excuteServices)
-            {
+            foreach (IExcuteService service in _excuteServices) {
                 service.Execute();
             }
         }
 
         public int GetPriority() {
-          return 0;
+            return 0;
         }
 
         public void Init(Contexts contexts) {
-           foreach (var  unit in _initServices)
-           {
-               foreach (var initService in unit.Value)
-               {
-                   initService.Init(contexts);
-               }
-           }
+            foreach (var unit in _initServices) {
+                foreach (var initService in unit.Value) {
+                    initService.Init(contexts);
+                }
+            }
         }
 
     }

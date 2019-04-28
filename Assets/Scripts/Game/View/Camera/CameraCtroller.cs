@@ -100,7 +100,6 @@ namespace Game {
 
         public void OnGameCameraState(GameEntity entity, CameraAniName state) {
             Transform parnet = null;
-            Debug.Log(state + ": OnGameCameraState");
             switch (state)
             {
                 case CameraAniName.START_GAME_ANI:

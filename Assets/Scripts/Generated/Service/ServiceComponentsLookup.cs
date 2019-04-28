@@ -10,16 +10,22 @@ public static class ServiceComponentsLookup {
 
     public const int GameServiceEntitasInputService = 0;
     public const int GameServiceFindObjectService = 1;
+    public const int GameServiceLoadService = 2;
+    public const int GameServiceLogService = 3;
 
-    public const int TotalComponents = 2;
+    public const int TotalComponents = 4;
 
     public static readonly string[] componentNames = {
         "GameServiceEntitasInputService",
-        "GameServiceFindObjectService"
+        "GameServiceFindObjectService",
+        "GameServiceLoadService",
+        "GameServiceLogService"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Game.Service.EntitasInputServiceComponent),
-        typeof(Game.Service.FindObjectServiceComponent)
+        typeof(Game.Service.FindObjectServiceComponent),
+        typeof(Game.Service.LoadServiceComponent),
+        typeof(Game.Service.LogServiceComponent)
     };
 }

@@ -23,7 +23,7 @@ namespace Game {
             GameObject go;
             Component temComponent;
             foreach (var view in Enum.GetValues(typeof(GameUIName))) {
-                go = LoadManager.Single.LoadAndInstaniate(Path.GAME_UI_PATH + view, transform);
+                go = LoadManager.Single.LoadAndInstaniate(Const.Path.GAME_UI_PATH + view, transform);
                 if (!go.UtilDebugLogNull()) {
                     temComponent = go.AddComponent(Type.GetType(_nameSpace + view + _postfix));
                     if (temComponent is IView) {

@@ -52,7 +52,7 @@ namespace Game {
                uiController.Init();
             }
 
-            _contexts.game.SetGameTestOne(1);
+     
         }
 
         private void Update()
