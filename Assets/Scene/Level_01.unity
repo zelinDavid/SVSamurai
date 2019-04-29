@@ -22478,7 +22478,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100002, guid: 789cc110f0d5e4ef68d5534de749c544, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 789cc110f0d5e4ef68d5534de749c544, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 789cc110f0d5e4ef68d5534de749c544, type: 3}
       propertyPath: m_LocalPosition.x

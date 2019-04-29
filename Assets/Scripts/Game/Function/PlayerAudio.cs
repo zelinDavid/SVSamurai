@@ -39,28 +39,46 @@ namespace Game {
             Play(AudioName.attack);
         }
 
+        private int GetFrames(){
+            if (IsRun)
+            {
+                return ConstValue.RUN_STEP_TIME;
+            }else {
+                return ConstValue.WALK_STEP_TIME;
+
+            }
+        }
+
         public void Idle() {
-            throw new System.NotImplementedException();
+             
         }
 
         public void Move() {
-            throw new System.NotImplementedException();
+            if (_times == 0)
+            {
+                Play(AudioName.step, ConstValue.MOVE_STEP_VOLUME);
+            }
+            _times ++;
+            if (_times >= GetFrames())
+            {
+                _times = 0;
+            }
         }
 
-        public void TrunRight() {
-            throw new System.NotImplementedException();
+        public void TurnRight() {
+            
         }
 
         public void TurnBack() {
-            throw new System.NotImplementedException();
+            
         }
 
         public void TurnForward() {
-            throw new System.NotImplementedException();
+             
         }
 
         public void TurnLeft() {
-            throw new System.NotImplementedException();
+            
         }
 
         public void Play(AudioName name, float volume = 1) {

@@ -42,6 +42,7 @@ namespace Game.Service {
             _contexts = contexts;
 
             _inputButton = contexts.input.gameInputButton;
+            //在new方法中自己定义的函数
             _entitaInputService = contexts.service.gameServiceEntitasInputService.EntitasInputService;
         }
 
@@ -61,7 +62,7 @@ namespace Game.Service {
              
         }
 
-        public void TrunRight() {
+        public void TurnRight() {
             if (!InputDown(KeyCode.D, InputButton.RIGHT))
                 InputPress(KeyCode.D, InputButton.RIGHT);
         }
@@ -136,7 +137,7 @@ namespace Game.Service {
 
             TurnLeft();
 
-            TrunRight();
+            TurnRight();
 
             Attack(0);
 

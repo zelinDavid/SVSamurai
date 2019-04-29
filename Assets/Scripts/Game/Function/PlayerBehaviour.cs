@@ -48,6 +48,7 @@ namespace Game {
                 IsCollideWall = false;
             }
             PlayerMove();
+            RotateFace();
         }
 
         private void PlayerMove() {
@@ -73,7 +74,7 @@ namespace Game {
             }
         }
 
-        public void TrunRight() {
+        public void TurnRight() {
             if (IsAttack)
                 return;
             SetDirectionData(Vector3.up * 90);

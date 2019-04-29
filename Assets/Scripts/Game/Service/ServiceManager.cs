@@ -41,8 +41,8 @@ namespace Game.Service {
                 new FindObjectService(),
                 new LogService(),
                 new EntitasInputService(),
-
-                new UnityInputService()
+                new UnityInputService(),
+                new LoadService(parentManager) 
             };
             return services;
         }

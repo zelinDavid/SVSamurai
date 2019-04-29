@@ -6,11 +6,9 @@ namespace Game
     {
         public InitFeature(Contexts contexts):base("Init")  
         {
-           
             Add(new ViewFeature(contexts));
             Add(new InputFeature(contexts));
             Add(new GameFeature(contexts));
-Debug.Log("dddddddddddddddddddd");
             Add(new GameEventSystems(contexts));
         }
     }

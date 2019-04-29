@@ -24,9 +24,9 @@ namespace Game
             return entity.gameInputButton.InputButton == InputButton.NULL && entity.gameInputButton.InputState == InputState.NULL;
         }
 
-        protected override bool FilterCondition()
+        protected override bool FilterCondition(InputEntity entity)
         {
-           return true;
+            return true;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Game
         void TurnForward();
         void TurnBack();
         void TurnLeft();
-        void TrunRight();
+        void TurnRight();
         void Move();
     }
     

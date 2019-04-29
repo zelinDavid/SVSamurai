@@ -10,7 +10,7 @@ namespace Game {
         }
 
         protected override bool Filter(InputEntity entity) {
-            return entity.hasGameInputButton && FilterCondition();
+            return entity.hasGameInputButton && FilterCondition(entity);
         }
 
         protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context) {
@@ -20,7 +20,7 @@ namespace Game {
         /// 事件执行的筛选条件
         /// </summary>
         /// <returns></returns>
-        protected abstract bool FilterCondition();
+        protected abstract bool FilterCondition(InputEntity entity);
     }
 
     /// <summary>

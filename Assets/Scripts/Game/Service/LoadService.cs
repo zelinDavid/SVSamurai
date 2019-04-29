@@ -89,8 +89,12 @@ namespace Game.Service {
             {
                 Debug.LogError("玩家与智商为发现动画组件");
             }else{
-                animator = 
+                // animator = 
             }
+            var entity = Contexts.sharedInstance.game.SetGamePlayer(view, playerBehavior, ani,audio);
+            //TODO： 玩家动画暂不添加
+            view.Init(Contexts.sharedInstance, entity);
+
         }
     }
 }
