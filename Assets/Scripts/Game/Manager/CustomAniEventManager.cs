@@ -16,7 +16,7 @@ using UnityEngine;
 
  */
 namespace Game {
-    interface ICustomAniEventManager {
+    public interface ICustomAniEventManager {
         void AddEventListener(Action<string> OnStateEnterAction, Action<string> OnStateUpdateAction, Action<string> OnStateExitAction);
 
     }
@@ -25,7 +25,6 @@ namespace Game {
         //TODO：你上次写到这里；
         /*
         ICustomAniEventManager  AddEventListener  action entryState updateState existState
-
         CustomAniEventManager
             构造函数； SkillCodeModule skill与code转化；
  
@@ -42,6 +41,7 @@ namespace Game {
             new InitSkillAni(animator);
             InitAnimatorStateData(animator);
             AddCustomAniEventScripts();
+            InitCustomAniEventScripts();
         }
 
         private void InitAnimatorStateData(Animator animator) {
@@ -52,7 +52,6 @@ namespace Game {
                         _statesDic.Add(stateName, animatorState.state);
                     }
                 }
-
                 if (!_statesDic.ContainsValue(animatorState.state)) {
                     Debug.LogError("animatorState fail");
                 }
@@ -77,16 +76,23 @@ namespace Game {
             }
         }
 
-        public void AddEventListener(Action<string> OnStateEnterAction, Action<string> OnStateUpdateAction, Action<string> OnStateExitAction)
-        {
-             foreach (CustomAniEvent aniEvent in _animator.GetBehaviours<CustomAniEvent>())
-            {
+        public void AddEventListener(Action<string> OnStateEnterAction, Action<string> OnStateUpdateAction, Action<string> OnStateExitAction) {
+            foreach (CustomAniEvent aniEvent in _animator.GetBehaviours<CustomAniEvent>()) {
                 aniEvent.OnStateEnterAction = OnStateEnterAction;
                 aniEvent.OnStateUpdateAction = OnStateUpdateAction;
                 aniEvent.OnStateExitAction = OnStateExitAction;
             }
         }
+
+        private void InitCustomAniEventScripts()
+        {
+            foreach (KeyValuePair<PlayerAniStateName, CustomAniEvent> pair in _eventDic)
+            {
+                pair.Value.Init(pair.Key);
+            }
+        }
     }
+
 
     /// <summary>
     /// 技能脚本名称初始化

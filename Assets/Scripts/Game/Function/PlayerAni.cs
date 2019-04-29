@@ -1,7 +1,7 @@
 namespace Game
 {
-    public class PlayerAni : IPlayerAni
-    {
+    // public class PlayerAni : IPlayerAni
+    // {
          
-    }
+    // }
 }

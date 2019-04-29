@@ -1,14 +1,11 @@
+namespace Game {
 
-
-namespace Game
-{
-    
     public interface IAni {
-    void Play(int aniIndex);
-    
+        void Play(int aniIndex);
+        ICustomAniEventManager AniEventManager { get; set; }
     }
 
-    public interface IPlayerAni:IAni,IPlayerBehaviour {
-        
+    public interface IPlayerAni : IAni, IPlayerBehaviour {
+
     }
 }
