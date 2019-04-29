@@ -87,9 +87,9 @@ namespace Game.Service {
             Animator animator = player.GetComponent<Animator>();
             if (animator == null)
             {
-                Debug.LogError("玩家与智商为发现动画组件");
+                Debug.LogError("玩家预制上为发现动画组件");
             }else{
-                // animator = 
+                // animator = new playerani
             }
             var entity = Contexts.sharedInstance.game.SetGamePlayer(view, playerBehavior, ani,audio);
             //TODO： 玩家动画暂不添加

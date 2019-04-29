@@ -9,11 +9,7 @@ using UnityEngine;
     Animator动画切换逻辑：
         AniIndex 控制动画切换：idle -> walk -> run
         AniIndex不变的情况下，改变 skill，变为放技能的状态
-
-
-
-
-
+  
  */
 namespace Game {
     public interface ICustomAniEventManager {
@@ -103,7 +99,8 @@ namespace Game {
         }
 
         private void SetStateName(Animator animtor) {
-
+            //TODO: 上次写到这里
+            
         }
     }
 
