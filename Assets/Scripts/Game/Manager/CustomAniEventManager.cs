@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+using Module;
+
 using UnityEditor.Animations;
 
 using UnityEngine;
@@ -18,7 +20,6 @@ namespace Game {
     }
 
     public class CustomAniEventManager : ICustomAniEventManager {
-        //TODO：你上次写到这里；
         /*
         ICustomAniEventManager  AddEventListener  action entryState updateState existState
         CustomAniEventManager
@@ -80,15 +81,12 @@ namespace Game {
             }
         }
 
-        private void InitCustomAniEventScripts()
-        {
-            foreach (KeyValuePair<PlayerAniStateName, CustomAniEvent> pair in _eventDic)
-            {
+        private void InitCustomAniEventScripts() {
+            foreach (KeyValuePair<PlayerAniStateName, CustomAniEvent> pair in _eventDic) {
                 pair.Value.Init(pair.Key);
             }
         }
     }
-
 
     /// <summary>
     /// 技能脚本名称初始化
@@ -99,8 +97,31 @@ namespace Game {
         }
 
         private void SetStateName(Animator animtor) {
-            //TODO: 上次写到这里
-            
+            SkillCodeModule codeModule = new SkillCodeModule();
+
+            AnimatorController aniController = animtor.runtimeAnimatorController as AnimatorController;
+            AnimatorStateMachine aniMachine = aniController.layers[0].stateMachine;
+ 
+            SkillAniState tem = null;
+            foreach (ChildAnimatorState childState in aniMachine.states)
+            {
+                foreach (StateMachineBehaviour behavior in childState.state.behaviours)
+                {
+                    tem = null;
+                    if (behavior is SkillAniState)
+                    {
+                        tem = behavior as SkillAniState;
+                        break;
+                    }
+                }
+
+                if (tem != null)
+                {
+                    int code = codeModule.GetSkillCode(childState.state.name, "attack", ""); //childState.state.name: attackXOOX
+                    tem.name = code.ToString();
+                }
+            }
+ 
         }
     }
 

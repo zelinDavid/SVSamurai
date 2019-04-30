@@ -1,5 +1,7 @@
 using Manager;
 using UnityEngine;
+using Game;
+
 
 namespace Game.Service {
     /*
@@ -70,14 +72,7 @@ namespace Game.Service {
             var player = LoadAndInstaniate(Path.PLAYER_PREFAB, _parentManager.GetParentTrans(ParentName.PlayerRoot));
             player.AddComponent<IgnorForce>();
             player.AddComponent<PlayerCollider>();
-
-            // public class PlayerComponent:IComponent
-            //     {
-            //         public IView Player;
-            //         public IPlayerBehaviour Behavior;
-            //         public IPlayerAni Ani;
-            //         public IPlayerAudio Audio;
-            //     }
+ 
             IView view = player.AddComponent<PlayerView>();
 
             IPlayerBehaviour playerBehavior = new PlayerBehaviour(player.transform, ModelManager.Single.PlayerData);
@@ -89,9 +84,11 @@ namespace Game.Service {
             {
                 Debug.LogError("玩家预制上为发现动画组件");
             }else{
-                // animator = new playerani
+                ani = new PlayerAni(animator, new CustomAniEventManager(animator));
             }
             var entity = Contexts.sharedInstance.game.SetGamePlayer(view, playerBehavior, ani,audio);
+            entity.AddGamePlayerAniState(PlayerAniIndex.IDLE);
+            
             //TODO： 玩家动画暂不添加
             view.Init(Contexts.sharedInstance, entity);
 

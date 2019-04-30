@@ -10,5 +10,7 @@ public sealed class GameEventSystems : Feature {
 
     public GameEventSystems(Contexts contexts) {
         Add(new GameCameraStateEventSystem(contexts)); // priority: 0
+        Add(new GameAnyEndHumanSkillEventSystem(contexts)); // priority: 0
+        Add(new GameAnyStartHumanSkillEventSystem(contexts)); // priority: 0
     }
 }

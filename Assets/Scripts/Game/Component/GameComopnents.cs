@@ -27,4 +27,34 @@ namespace Game {
         public PlayerBehaviourIndex Behaviour;
         public BehaviorState State;
     }
+
+    /// <summary>
+    /// 玩家动画
+    /// </summary>
+    [Game]
+    public class PlayerAniState : IComponent {
+        public PlayerAniIndex AniIndex;
+    }
+
+    /// <summary>
+    /// 人物技能开始事件
+    /// </summary>
+    [Game, Unique, Event(EventTarget.Any)]
+    public class StartHumanSkillComponent : IComponent {
+        /// <summary>
+        /// 技能编码
+        /// </summary>
+        public int SkillCode;
+    }
+
+    /// <summary>
+    /// 人物技能结束事件
+    /// </summary>
+    [Game, Unique, Event(EventTarget.Any)]
+    public class EndHumanSkillComponent : IComponent {
+        /// <summary>
+        /// 技能编码
+        /// </summary>
+        public int SkillCode;
+    }
 }
