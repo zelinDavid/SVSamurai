@@ -26,13 +26,13 @@ namespace Game {
             Transform parent;
             _parentName.TryGetValue(parentName, out parent);
             _parentName.UtilDebugLogNull();
-
+            Debug.Log(_parentName);
             return parent;
         }
 
         public Transform GetParentTrans(ParentName parentName) {
             Transform parent;
-            _parentName.TryGetValue(parentName.ToString(), out parent);
+            _parentName.TryGetValue(parentName.ToString(), out parent);  
             _parentName.UtilDebugLogNull();
             
             return parent;

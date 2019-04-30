@@ -14,25 +14,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Skill
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsIdleSword
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Blend
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -268,6 +268,30 @@ MonoBehaviour:
     duration: 0
     offset: 0
     interruptionSource: 0
+--- !u!114 &114166618904012888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662f11c5c3efda149bb81104ec5a2e58, type: 3}
+  m_Name: walkSword
+  m_EditorClassIdentifier: 
+--- !u!114 &114169393283028328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662f11c5c3efda149bb81104ec5a2e58, type: 3}
+  m_Name: idleSword
+  m_EditorClassIdentifier: 
 --- !u!114 &114185225430258450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -535,6 +559,18 @@ MonoBehaviour:
   m_Name: 22211
   m_EditorClassIdentifier: 
   m_Name: 22211
+--- !u!114 &114486570584730290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662f11c5c3efda149bb81104ec5a2e58, type: 3}
+  m_Name: runSword
+  m_EditorClassIdentifier: 
 --- !u!114 &114514420497175434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -697,6 +733,30 @@ MonoBehaviour:
   m_Name: runSword
   m_EditorClassIdentifier: 
   m_Name: runSword
+--- !u!114 &114648084873878200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662f11c5c3efda149bb81104ec5a2e58, type: 3}
+  m_Name: run
+  m_EditorClassIdentifier: 
+--- !u!114 &114649924861276460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662f11c5c3efda149bb81104ec5a2e58, type: 3}
+  m_Name: walk
+  m_EditorClassIdentifier: 
 --- !u!114 &114653915110226080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -930,6 +990,18 @@ MonoBehaviour:
   m_Name: 12211
   m_EditorClassIdentifier: 
   m_Name: 12211
+--- !u!114 &114821276350585140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662f11c5c3efda149bb81104ec5a2e58, type: 3}
+  m_Name: idle
+  m_EditorClassIdentifier: 
 --- !u!114 &114838190462872714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2711,7 +2783,8 @@ AnimatorState:
   - {fileID: 1101332021548351756}
   - {fileID: 1101199663597630046}
   - {fileID: 1101983095097565316}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114649924861276460}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -2929,7 +3002,8 @@ AnimatorState:
   - {fileID: 1101381527502453784}
   - {fileID: 1101629169224598084}
   - {fileID: 1101767176895313978}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114169393283028328}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -3147,7 +3221,8 @@ AnimatorState:
   - {fileID: 1101270157919352648}
   - {fileID: 1101786774748450896}
   - {fileID: 1101733986470206712}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114166618904012888}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -3175,7 +3250,8 @@ AnimatorState:
   m_Transitions:
   - {fileID: 1101409070386329922}
   - {fileID: 1101561271181802488}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114821276350585140}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -3203,7 +3279,8 @@ AnimatorState:
   m_Transitions:
   - {fileID: 1101269034177785176}
   - {fileID: 1101293375140772812}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114486570584730290}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -3498,7 +3575,8 @@ AnimatorState:
   m_Transitions:
   - {fileID: 1101357787664790036}
   - {fileID: 1101156446541308658}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114648084873878200}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

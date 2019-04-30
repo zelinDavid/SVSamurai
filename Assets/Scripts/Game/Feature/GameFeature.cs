@@ -4,7 +4,6 @@ namespace Game {
     public class GameFeature : Feature {
         public GameFeature(Contexts contexts) {
             InitalizeFun(contexts);
-
             ReactiveSystemFun(contexts);
         }
 
@@ -13,7 +12,7 @@ namespace Game {
             Add(new GameHumanAniEventSystem(contexts));
             
         }
-
+ 
         public void ExecuteFun(Contexts contexts) { }
 
         public void CleanupFun(Contexts contexts) { }
@@ -21,6 +20,12 @@ namespace Game {
         public void TearDownFun(Contexts contexts) { }
 
         public void ReactiveSystemFun(Contexts contexts) {
+            //TODO:GamePlayHumanSkillSystem
+            
+            Add(new GameStartSystem(contexts));
+            Add(new GamePauseSystem(contexts));
+            Add(new GameEndSystem(contexts));
+
             Behaviour(contexts);
         }
 

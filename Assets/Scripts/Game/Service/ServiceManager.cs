@@ -31,7 +31,7 @@ namespace Game.Service {
 
             //foreach 字典，每一个键值对打印顺序和加入顺序一致，所以需要排序
 
-            var list = from service in _initServices orderby service.Key select service;
+            var list = from ddd in _initServices orderby ddd.Key select ddd;
             _initServices = list.ToDictionary(pair => pair.Key, pair => pair.Value);
 
         }

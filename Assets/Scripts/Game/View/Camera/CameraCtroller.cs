@@ -45,7 +45,7 @@ namespace Game {
         }
 
         private void Test(){
-            _entity.ReplaceGameCameraState(CameraAniName.START_GAME_ANI);
+  
      
         }
 

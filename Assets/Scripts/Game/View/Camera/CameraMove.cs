@@ -16,7 +16,7 @@ namespace Game {
 
         public void Move(Transform parent, Action callBack) {
             SetParent(parent);
-            float time = 2;
+            float time = 2  * 0.01f;
 
             transform.DOKill();
             transform.DOLocalMove(Vector3.zero, time);

@@ -57,4 +57,13 @@ namespace Game {
         /// </summary>
         public int SkillCode;
     }
+
+    /// <summary>
+    /// 游戏状态
+    /// </summary>
+    [Game, Unique]
+    public class GameStateComponent : IComponent {
+        public GameState GameState;
+    }
+
 }
