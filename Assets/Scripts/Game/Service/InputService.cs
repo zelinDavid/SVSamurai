@@ -1,4 +1,5 @@
 using System.Security.Cryptography.X509Certificates;
+
 using UnityEngine;
 
 namespace Game.Service {
@@ -52,14 +53,14 @@ namespace Game.Service {
         }
 
         public void Idle() {
-            if (!_isPress && _inputButton.InputButton != InputButton.NULL && _inputButton.InputState != InputState.NULL)
-            {
-                _entitaInputService.Input(_inputButton.InputButton, _inputButton.InputState);
+            Debug.Log("idle _isPress:" + _isPress + _inputButton.InputButton + _inputButton.InputState);
+            if (!_isPress && _inputButton.InputButton != InputButton.NULL && _inputButton.InputState != InputState.NULL) {
+                _entitaInputService.Input(InputButton.NULL, InputState.NULL);
             }
         }
 
         public void Move() {
-             
+
         }
 
         public void TurnRight() {
@@ -68,12 +69,12 @@ namespace Game.Service {
         }
 
         public void TurnBack() {
-            if(!InputDown(KeyCode.S, InputButton.BACK))
+            if (!InputDown(KeyCode.S, InputButton.BACK))
                 InputPress(KeyCode.S, InputButton.BACK);
         }
 
         public void TurnForward() {
-             if(!InputDown(KeyCode.W, InputButton.FORWARD))
+            if (!InputDown(KeyCode.W, InputButton.FORWARD))
                 InputPress(KeyCode.W, InputButton.FORWARD);
         }
 
@@ -86,51 +87,43 @@ namespace Game.Service {
             return 1;
         }
 
-        public bool InputDown(KeyCode code, InputButton button){
-            if(UnityEngine.Input.GetKeyDown(code)){
+        public bool InputDown(KeyCode code, InputButton button) {
+            if (UnityEngine.Input.GetKeyDown(code)) {
                 Input(button, InputState.DOWN);
                 _isPress = true;
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
 
-
-        public bool InputPress(KeyCode code, InputButton button)
-        {
-            if (UnityEngine.Input.GetKey(code))
-            {
+        public bool InputPress(KeyCode code, InputButton button) {
+            if (UnityEngine.Input.GetKey(code)) {
                 Input(button, InputState.PREE);
                 _isPress = true;
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
 
-        public bool InputUp(KeyCode code, InputButton button)
-        {
-            if (UnityEngine.Input.GetKeyUp(code))
-            {
+        public bool InputUp(KeyCode code, InputButton button) {
+            if (UnityEngine.Input.GetKeyUp(code)) {
                 Input(button, InputState.UP);
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
-        
-        public void Input(InputButton button, InputState state){
+
+        public void Input(InputButton button, InputState state) {
             _entitaInputService.Input(button, state);
         }
-        
+
         //暂时没看懂这块逻辑
         public void Execute() {
-
+            _isPress = false;
+            
             TurnForward();
 
             TurnBack();

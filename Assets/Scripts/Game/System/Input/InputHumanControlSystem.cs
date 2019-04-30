@@ -8,8 +8,8 @@ namespace Game {
 
         protected override void Execute(List<InputEntity> entities) {
             if (_contexts.game.hasGamePlayer) {
-                // _contexts.game.gamePlayer.Ani.Idle();
-                // _contexts.game.gamePlayer.Ani.IsRun = false;
+                _contexts.game.gamePlayer.Ani.Idle();
+                _contexts.game.gamePlayer.Ani.IsRun = false;
                 _contexts.game.gamePlayer.Audio.IsRun = false;
             }
             //TODO: 自定义模块的timer调用.
@@ -38,10 +38,9 @@ namespace Game {
         protected override void Execute(List<InputEntity> entities) {
             (_contexts.game.gamePlayer.Behavior as PlayerBehaviour).TurnForward();
             //TODO:播放ani动画
-            // (_contexts.game.gamePlayer as playani).Ani.Move();
+            (_contexts.game.gamePlayer.Ani as PlayerAni).Move();
 
             Debug.Log("InputForwardButtonSystem");
-
         }
 
     }
@@ -76,7 +75,7 @@ namespace Game {
 
         protected override void Execute(List<InputEntity> entities) {
             _contexts.game.gamePlayer.Behavior.TurnLeft();
-            // _contexts.game.gamePlayer.Ani.Move();
+            _contexts.game.gamePlayer.Ani.Move();
             Debug.Log("InputLeftButtonSystem");
 
         }
@@ -94,7 +93,7 @@ namespace Game {
 
         protected override void Execute(List<InputEntity> entities) {
             _contexts.game.gamePlayer.Behavior.TurnRight();
-            // _contexts.game.gamePlayer.Ani.Move();
+            _contexts.game.gamePlayer.Ani.Move();
             Debug.Log("InputRightButtonSystem");
 
         }
