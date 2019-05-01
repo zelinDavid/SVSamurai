@@ -1,5 +1,7 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Module.Timer {
 
@@ -194,8 +196,14 @@ namespace Module.Timer {
         }
 
         public void Stop(bool isComplete) {
-            ResetData();
-            IsTiming = false;
+            Debug.Log("stop:" + isComplete + IsComplete);
+             if (IsComplete && isComplete)
+                {
+                    _onComplete?.Invoke();
+                }
+                _onComplete = null;
+                _runTimeTotal = 0;
+                IsTiming = false;
         }
 
         public void Update() {
@@ -273,7 +281,16 @@ namespace Module.Timer {
                     return null;
                 }
             } else {
-                timer = new Timer(id, duration, loop);
+                if (_inactiveTimers.Count > 0)
+                {
+                    timer = _inactiveTimers.First();
+                    _timersDic.Remove(timer.ID);
+                    _inactiveTimers.Remove(timer);
+                    ResetTimer(timer, id,duration, loop);
+                }else {
+                    timer = new Timer(id, duration, loop);
+                }
+                _timersDic.Add(timer.ID, timer);
                 _activeTimers.Add(timer);
             }
 
@@ -321,6 +338,7 @@ namespace Module.Timer {
             if (_timersDic.ContainsKey(id)) {
                 return _timersDic[id];
             }
+            Debug.LogError("fail getTimer:" + id);
             return null;
         }
 

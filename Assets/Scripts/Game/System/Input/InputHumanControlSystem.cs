@@ -7,12 +7,15 @@ namespace Game {
         public InputNullSystem(Contexts contexts) : base(contexts) { }
 
         protected override void Execute(List<InputEntity> entities) {
+            var timer = _contexts.service.gameServiceTimerService.TimerService.GeTimer(TimerId.MOVE_TIMER);
+             timer?.Stop(true);
+
             if (_contexts.game.hasGamePlayer) {
                 _contexts.game.gamePlayer.Ani.Idle();
                 _contexts.game.gamePlayer.Ani.IsRun = false;
                 _contexts.game.gamePlayer.Audio.IsRun = false;
             }
-            _contexts.service.gameServiceTimerService.TimerService.GeTimer(TimerId.MOVE_TIMER)?.Stop(true);
+           
             //TODO: 自定义模块的timer调用.
             Debug.Log("InputNullSystem");
         }
@@ -118,12 +121,11 @@ namespace Game {
             Debug.Log("serviceExecute:" + service);
             if (service != null)
             {
-                Debug.Log("timeService AddCompleteListener");
                 service.AddCompleteListener(()=> {
-                    _contexts.game.gamePlayer.Behavior.IsRun = true;
                     _contexts.game.gamePlayer.Ani.IsRun = true;
                     _contexts.game.gamePlayer.Audio.IsRun = true;
-                    
+                    Debug.Log("timeService listen complete");
+
                 });
             }
            
