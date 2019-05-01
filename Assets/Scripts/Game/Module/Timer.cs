@@ -1,15 +1,12 @@
-
 using System;
+using System.Collections.Generic;
 
-namespace Module.Timer
-{
+namespace Module.Timer {
 
-
-   /// <summary>
+    /// <summary>
     /// 计时器接口
     /// </summary>
-    public interface ITimer
-    {
+    public interface ITimer {
         /// <summary>
         /// 计时器唯一标识
         /// </summary>
@@ -66,8 +63,7 @@ namespace Module.Timer
         ITimer AddCompleteListener(Action complete);
     }
 
-    public interface ITimerManager
-    {
+    public interface ITimerManager {
         /// <summary>
         /// 创建计时器，如当前指定名称计时器正在计时，返回null
         /// </summary>
@@ -121,71 +117,259 @@ namespace Module.Timer
         void StopAll();
     }
 
-
     /// <summary>
     /// 计时器管理类
     /// </summary>
 
-    public class Timer : ITimer
-    {
-        public string ID {get; private set;}
+    public class Timer : ITimer {
 
-        private float _runTime;
+        private float _duration;
 
-        public float CurrentTime => _runTime;  
+        private Action _onUpate;
+        private Action _onComplete;
+        private DateTime _startTime;
+        //总运行时间
+        private float _runTimeTotal;
+        //刷新间隔帧数
+        private int _offsetFrame = 5;
+        private int _frameTimes;
 
-        public float Percent => throw new NotImplementedException();
+        public string ID { get; private set; }
 
-        public float Duration => throw new NotImplementedException();
+        public float CurrentTime => _runTimeTotal;
 
-        public bool IsLoop => throw new NotImplementedException();
+        public float Percent => _runTimeTotal / _duration;
 
-        public bool IsTiming => throw new NotImplementedException();
+        public float Duration => _duration;
 
-        public bool IsComplete => throw new NotImplementedException();
+        public bool IsLoop { get; private set; }
 
-        public ITimer AddCompleteListener(Action complete)
-        {
-            throw new NotImplementedException();
+        public bool IsTiming { get; private set; }
+
+        public bool IsComplete { get; private set; }
+
+        public Timer(string id, float duration, bool loop) {
+            InitData(id, duration, loop);
         }
 
-        public ITimer AddUpdateListener(Action update)
-        {
-            throw new NotImplementedException();
+        public ITimer AddCompleteListener(Action complete) {
+            _onComplete += complete;
+            return this;
         }
 
-        public void Continue()
-        {
-            throw new NotImplementedException();
+        public ITimer AddUpdateListener(Action update) {
+            _onUpate += update;
+            return this;
         }
 
-        public void Pause()
-        {
-            throw new NotImplementedException();
+        public void Continue() {
+            IsTiming = true;
+            _startTime = DateTime.Now;
+
         }
 
-        public void ResetData(string id, float duration, bool loop)
-        {
-            throw new NotImplementedException();
+        public void Pause() {
+            IsTiming = false;
+            _runTimeTotal += GetCurrentTimingTime();
         }
 
-        public void Stop(bool isComplete)
-        {
-            throw new NotImplementedException();
+        public void ResetData(string id, float duration, bool loop) {
+            InitData(id, duration, loop);
         }
 
-        public void Update()
-        {
-            throw new NotImplementedException();
+        private void InitData(string id, float duration, bool loop) {
+            ID = id;
+            _duration = duration;
+            IsLoop = loop;
+            ResetData();
+        }
+
+        private void ResetData() {
+            IsComplete = false;
+            IsTiming = true;
+            _startTime = DateTime.Now;
+            _runTimeTotal = 0;
+            _onUpate = null;
+            _onComplete = null;
+        }
+
+        public void Stop(bool isComplete) {
+            ResetData();
+            IsTiming = false;
+        }
+
+        public void Update() {
+
+            if (!IsTiming || IsComplete) {
+                return;
+            }
+
+            _frameTimes++;
+            if (_frameTimes < _offsetFrame) {
+                return;
+            }
+            _frameTimes = 0;
+
+            IsComplete = JudgeIsComplete();
+
+            if (IsLoop) {
+                Loop();
+            } else {
+                NotLoop();
+            }
+
+            _onUpate?.Invoke();
+
+        }
+
+        private void Loop() {
+            if (IsComplete) {
+                IsComplete = false;
+                _onComplete?.Invoke();
+                ResetData();
+            }
+        }
+
+        private void NotLoop() {
+            if (IsComplete) {
+                _onComplete?.Invoke();
+                _onComplete = null;
+            }
+        }
+
+        private bool JudgeIsComplete() {
+
+            return (CurrentTime + GetCurrentTimingTime()) >= Duration;
+        }
+
+        private float GetCurrentTimingTime() {
+            var time = DateTime.Now - _startTime;
+            return (float) time.TotalSeconds;
         }
     }
 
+    /// <summary>
+    /// 计时器管理类
+    /// </summary>
+    public class TimerManager : ITimerManager {
+        private HashSet<ITimer> _activeTimers;
+        private HashSet<ITimer> _inactiveTimers;
+        private HashSet<ITimer>.Enumerator _activeEnum;
+        private Dictionary<string, ITimer> _timersDic;
 
+        public TimerManager() {
+            _activeTimers = new HashSet<ITimer>();
+            _inactiveTimers = new HashSet<ITimer>();
+            _timersDic = new Dictionary<string, ITimer>();
+        }
 
+        public ITimer CreateTimer(string id, float duration, bool loop) {
+            ITimer timer = null;
+            if (_timersDic.ContainsKey(id)) {
+                timer = _timersDic[id];
+                if (timer.IsTiming == false) {
+                    ResetTimer(timer, id, duration, loop);
+                } else {
+                    return null;
+                }
+            } else {
+                timer = new Timer(id, duration, loop);
+                _activeTimers.Add(timer);
+            }
 
+            timer.AddCompleteListener(() => TimerCompleter(timer));
+            return timer;
+        }
 
+        private void TimerCompleter(ITimer timer) {
+            if (!timer.IsLoop) {
+                SetInactiveTimer(timer);
+            }
+        }
 
+        private void SetInactiveTimer(ITimer timer) {
+            if (_activeTimers.Contains(timer)) {
+                _activeTimers.Remove(timer);
+                _inactiveTimers.Add(timer);
+            }
+        }
 
+        private void ResetTimer(ITimer timer, string id, float duration, bool loop) {
+            if (_inactiveTimers.Contains(timer)) {
+                _inactiveTimers.Remove(timer);
+                _activeTimers.Add(timer);
+            }
 
+            timer.ResetData(id, duration, loop);
+        }
+
+        public void ContinueAll() {
+            foreach (ITimer timer in _activeTimers) {
+                timer.Continue();
+            }
+        }
+
+        public ITimer CreatOrRestartTimer(string id, float duration, bool loop) {
+            var timer = CreateTimer(id, duration, loop);
+            if (timer != null) {
+                timer = ResetTimerData(id, duration, loop);
+            }
+            return timer;
+        }
+
+        public ITimer GeTimer(string id) {
+            if (_timersDic.ContainsKey(id)) {
+                return _timersDic[id];
+            }
+            return null;
+        }
+
+        public void PauseAll() {
+            foreach (ITimer timer in _activeTimers) {
+                timer.Pause();
+            }
+        }
+
+        public ITimer ResetTimerData(string id, float duration, bool loop) {
+            if (_timersDic.ContainsKey(id)) {
+                var timer = _timersDic[id];
+                if (timer.IsTiming) {
+                    ResetTimer(timer, id, duration, loop);
+                }
+
+                return timer;
+            }
+
+            return null;
+        }
+
+        public void StopAll() {
+            foreach (ITimer timer in _activeTimers) {
+                StopTimer(timer, false);
+            }
+        }
+
+        public void StopTimer(ITimer timer, bool isComplete) {
+            timer.Stop(isComplete);
+            SetInactiveTimer(timer);
+        }
+
+        public void Update() {
+            _activeEnum = _activeTimers.GetEnumerator();
+            int count = _activeTimers.Count;
+            try {
+                for (int i = 0; i < count; i++) {
+                    if (!_activeEnum.MoveNext()) {
+                        continue;
+                    } else {
+                        _activeEnum.Current.Update();
+                    }
+                }
+            } catch (System.Exception) {
+
+            }
+        }
+
+    }
 
 }

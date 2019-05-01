@@ -10,6 +10,7 @@ namespace Game {
             Add(new InputLeftButtonSystem(contexts));
             Add(new InputRightButtonSystem(contexts));
             Add(new InputBackButtonSystem(contexts));
+            Add(new InputMoveButtonSystem(contexts));
         }
     }
 }

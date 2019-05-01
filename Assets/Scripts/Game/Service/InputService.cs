@@ -53,7 +53,7 @@ namespace Game.Service {
         }
 
         public void Idle() {
-            Debug.Log("idle _isPress:" + _isPress + _inputButton.InputButton + _inputButton.InputState);
+            // Debug.Log("idle _isPress:" + _isPress + _inputButton.InputButton + _inputButton.InputState);
             if (!_isPress && _inputButton.InputButton != InputButton.NULL && _inputButton.InputState != InputState.NULL) {
                 _entitaInputService.Input(InputButton.NULL, InputState.NULL);
             }

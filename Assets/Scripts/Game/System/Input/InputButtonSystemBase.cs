@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 
 using Entitas;
+ 
+using UnityEngine;
 
 namespace Game {
     public abstract class InputButtonSystemBase : ReactiveSystem<InputEntity> {
@@ -23,6 +25,7 @@ namespace Game {
         protected abstract bool FilterCondition(InputEntity entity);
     }
 
+
     /// <summary>
     /// 按下响应系统基类
     /// </summary>
@@ -31,6 +34,12 @@ namespace Game {
 
         protected override bool Filter(InputEntity entity) {
             return base.Filter(entity) && entity.gameInputButton.InputState == InputState.DOWN;
+          
+            // if (entity.gameInputButton.InputState == InputState.DOWN)
+            // {   
+            //     Debug.Log("gameInputButton.InputState == InputState.DOWN");
+            // }
+            // return base.Filter(entity);
         }
 
     }

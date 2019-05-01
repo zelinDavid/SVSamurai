@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Module.Timer;
 using UnityEngine;
 
 namespace Game.Service {
@@ -33,7 +33,6 @@ namespace Game.Service {
 
             var list = from ddd in _initServices orderby ddd.Key select ddd;
             _initServices = list.ToDictionary(pair => pair.Key, pair => pair.Value);
-
         }
 
         IInitService[] InitServices(GameParentManager parentManager) {
@@ -42,7 +41,9 @@ namespace Game.Service {
                 new LogService(),
                 new EntitasInputService(),
                 new UnityInputService(),
-                new LoadService(parentManager) 
+                new LoadService(parentManager),
+                new TimerService(new TimerManager()),
+
             };
             return services;
         }

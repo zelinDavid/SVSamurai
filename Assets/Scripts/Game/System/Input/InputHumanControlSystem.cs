@@ -12,6 +12,7 @@ namespace Game {
                 _contexts.game.gamePlayer.Ani.IsRun = false;
                 _contexts.game.gamePlayer.Audio.IsRun = false;
             }
+            _contexts.service.gameServiceTimerService.TimerService.GeTimer(TimerId.MOVE_TIMER)?.Stop(true);
             //TODO: 自定义模块的timer调用.
             Debug.Log("InputNullSystem");
         }
@@ -113,17 +114,19 @@ namespace Game {
         }
 
         protected override void Execute(List<InputEntity> entities) {
-            //TODO:update by timer
-
-            // var service = _contexts.service.gameServiceTimerService.TimerService;
-            // var timer = service.CreateTimer(TimerId.MOVE_TIMER, 1, false);
-            // if (timer != null)
-            //     timer.AddCompleteListener(() =>
-            //     {
-            //         _contexts.game.gamePlayer.Ani.IsRun = true;
-            //         _contexts.game.gamePlayer.Audio.IsRun = true;
-            //     }
-            //  );
+            var service = _contexts.service.gameServiceTimerService.TimerService.CreateTimer(TimerId.MOVE_TIMER, 1, false);
+            Debug.Log("serviceExecute:" + service);
+            if (service != null)
+            {
+                Debug.Log("timeService AddCompleteListener");
+                service.AddCompleteListener(()=> {
+                    _contexts.game.gamePlayer.Behavior.IsRun = true;
+                    _contexts.game.gamePlayer.Ani.IsRun = true;
+                    _contexts.game.gamePlayer.Audio.IsRun = true;
+                    
+                });
+            }
+           
             Debug.Log("InputMoveButtonSystem");
 
         }

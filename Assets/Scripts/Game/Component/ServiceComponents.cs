@@ -1,6 +1,5 @@
 using Entitas;
 using Entitas.CodeGeneration.Attributes;
-
 using UnityEngine;
 
 namespace Game.Service {
@@ -36,4 +35,15 @@ namespace Game.Service {
         public ILoadService LoadService;
     }
 
+    [Service, Unique]
+    public class TimerServiceComponent : IComponent {
+        public ITimerService TimerService;
+    }
+
+    [Service, Unique]
+    public class SkillCodeServiceComponent : IComponent {
+        public ISkillCodeService SkillCodeService;
+    }
+
+    
 }
