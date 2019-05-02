@@ -6,6 +6,7 @@
      public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
          if (_code < 0) {
              try {
+                 Debug.Log("onStateEnter name:"+ name);
                  string code = name.Remove(name.Length - 7, 7);
                  _code = int.Parse(code);
              } catch (System.Exception) {
@@ -16,7 +17,7 @@
          Contexts.sharedInstance.game.ReplaceGameStartHumanSkill(_code);
      }
 
-     private void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex) {
+     public override  void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex) {
          Contexts.sharedInstance.game.ReplaceGameEndHumanSkill(_code);
      }
 

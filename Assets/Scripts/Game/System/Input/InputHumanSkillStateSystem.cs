@@ -1,50 +1,74 @@
-//看一个文件， 自己写这个文件，最后更改名称
+ using System.Collections.Generic;
+ using Entitas;
+ using Game.Service;
 
-using System.Collections.Generic;
+ namespace Game {
+     /*
+        filter: attact_x || attact_0
 
-namespace Game
-{
-    public class InputNullHumanSystem : InputButtonSystemBase
-    {
-        public InputNullHumanSystem(Contexts contexts) : base(contexts)
-        {
-        }
+        //player.ani.attack();
+        player.behavior.attack();
+        animator绑定对应的组件;
+        自定义的timer,增加skill.
 
-        protected override void Execute(List<InputEntity> entities)
-        {
-            if (_contexts.game.hasGamePlayer)
+
+      */
+     //TODO: 上次写到这里
+
+     public class InputHumanSkillStateSystem : ReactiveSystem<InputEntity>, IInitializeSystem {
+         Contexts _contexts;
+         public InputHumanSkillStateSystem(Contexts contexts) : base(contexts.input) {
+             _contexts = contexts;
+         }
+
+         public void Initialize() {
+             _contexts.input.ReplaceGameInputHumanSkillState(false, 0);
+         }
+
+         protected override void Execute(List<InputEntity> entities) {
+             foreach (InputEntity entity in entities) {
+                 ITimerService timerService = _contexts.service.gameServiceTimerService.TimerService;
+                 var timer = timerService.CreatOrRestartTimer(TimerId.JUDGE_SKILL_TIMER, 0.2f, false);
+                timer.AddCompleteListener(()=> SetValid(entity, true));
+                 SetValid(entity, false);
+             }
+
+         }
+
+         private void SetValid(InputEntity entity, bool isValid) {
+             var skillComponent = _contexts.input.gameInputHumanSkillState;
+            ReplaceValidHumanSkil(entity, isValid, skillComponent);
+         }
+
+         private void ReplaceValidHumanSkil(InputEntity entity, bool isValid, InputHumanSkillState skill){
+             int code = 0;
+             if (skill != null)
+             {
+                 code = skill.SkillCode;
+             }
+
+            if (!isValid)
             {
-                _contexts.game.gamePlayer.Ani.Idle();
-                _contexts.game.gamePlayer.Ani.IsRun = false;
-                _contexts.game.gamePlayer.Audio.IsRun = false;
+                // isValid = ju
             }
-        }
+
+         }
+
+         private bool JudgeLength(int code){
+            //  int max = _contexts.game.gamemodel\
+
+            return true;
+
+         }
 
          protected override bool Filter(InputEntity entity) {
-            return entity.gameInputButton.InputButton == InputButton.NULL && entity.gameInputButton.InputState == InputState.NULL;
-        }
+             return entity.gameInputButton.InputButton == InputButton.ATTACK_O ||
+                 entity.gameInputButton.InputButton == InputButton.ATTACK_X;
+         }
 
-        protected override bool FilterCondition(InputEntity entity)
-        {
-            return true;
-        }
-    }
-}
+         protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context) {
+             return context.CreateCollector(InputMatcher.GameInputButton);
+         }
+     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ }

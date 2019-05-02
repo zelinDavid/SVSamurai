@@ -1,11 +1,15 @@
+using System.Collections.Generic;
+using Entitas;
+using Entitas.CodeGeneration.Attributes;
 using UnityEngine;
-
+using Model;
 namespace Game
 {
-    public class ModelComponent : MonoBehaviour     
+    [Game, Unique]
+    public class HumanSkillConfig: IComponent
     {
-        public void Start()         
-        {
-        }
-    }
+        public List<ValidHumanSkill> ValidHumanSkills;
+
+        public int LengthMax;
+     }
 }
