@@ -8,6 +8,7 @@ namespace Module {
  
         //为啥技能int和 string这么转换， 后面需要看视频研究下
         public int GetCurrentSkillCode(SkillButton button, int currentCode) {
+            Debug.Log("GetCurrentSkillCode:" + button + ";" + currentCode);
             int code = (int) button;
             if (currentCode < 0) {
                 Debug.LogError("SkillCode不能小于0");
@@ -16,7 +17,6 @@ namespace Module {
             } else {
                 currentCode = currentCode * 10 + code;
             }
-
             return currentCode;
         }
 

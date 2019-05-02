@@ -1,8 +1,6 @@
 using System.Security.Cryptography.X509Certificates;
-
 using Entitas;
 using Entitas.CodeGeneration.Attributes;
-
 using UnityEngine;
 
 namespace Game {
@@ -66,4 +64,25 @@ namespace Game {
         public GameState GameState;
     }
 
+    /// <summary>
+    /// 输入人物技能部分
+    /// </summary>
+    [Game, Unique, Event(EventTarget.Any)]
+    public class ValidHumanSkillComponent : IComponent {
+        /// <summary>
+        /// 技能编码
+        /// </summary>
+        public int SkillCode;
+    }
+    /// <summary>
+    /// 播放人物技能部分
+    /// </summary>
+    [Game, Unique, Event(EventTarget.Any)]
+    public class PlayHumanSkillComponent : IComponent {
+        /// <summary>
+        /// 技能编码
+        /// </summary>
+        public int SkillCode;
+    }
+ 
 }

@@ -15,12 +15,16 @@ public static class GameComponentsLookup {
     public const int GameHumanSkillConfig = 4;
     public const int GamePlayerAniState = 5;
     public const int GamePlayer = 6;
-    public const int GameStartHumanSkill = 7;
-    public const int GameAnyEndHumanSkillListener = 8;
-    public const int GameAnyStartHumanSkillListener = 9;
-    public const int GameCameraStateListener = 10;
+    public const int GamePlayHumanSkill = 7;
+    public const int GameStartHumanSkill = 8;
+    public const int GameValidHumanSkill = 9;
+    public const int GameAnyEndHumanSkillListener = 10;
+    public const int GameAnyPlayHumanSkillListener = 11;
+    public const int GameAnyStartHumanSkillListener = 12;
+    public const int GameAnyValidHumanSkillListener = 13;
+    public const int GameCameraStateListener = 14;
 
-    public const int TotalComponents = 11;
+    public const int TotalComponents = 15;
 
     public static readonly string[] componentNames = {
         "GameCameraState",
@@ -30,9 +34,13 @@ public static class GameComponentsLookup {
         "GameHumanSkillConfig",
         "GamePlayerAniState",
         "GamePlayer",
+        "GamePlayHumanSkill",
         "GameStartHumanSkill",
+        "GameValidHumanSkill",
         "GameAnyEndHumanSkillListener",
+        "GameAnyPlayHumanSkillListener",
         "GameAnyStartHumanSkillListener",
+        "GameAnyValidHumanSkillListener",
         "GameCameraStateListener"
     };
 
@@ -44,9 +52,13 @@ public static class GameComponentsLookup {
         typeof(Game.HumanSkillConfig),
         typeof(Game.PlayerAniState),
         typeof(Game.PlayerComponent),
+        typeof(Game.PlayHumanSkillComponent),
         typeof(Game.StartHumanSkillComponent),
+        typeof(Game.ValidHumanSkillComponent),
         typeof(GameAnyEndHumanSkillListenerComponent),
+        typeof(GameAnyPlayHumanSkillListenerComponent),
         typeof(GameAnyStartHumanSkillListenerComponent),
+        typeof(GameAnyValidHumanSkillListenerComponent),
         typeof(GameCameraStateListenerComponent)
     };
 }
