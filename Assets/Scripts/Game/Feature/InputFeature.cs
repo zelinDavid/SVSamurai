@@ -11,6 +11,7 @@ namespace Game {
             Add(new InputRightButtonSystem(contexts));
             Add(new InputBackButtonSystem(contexts));
             Add(new InputMoveButtonSystem(contexts));
+            Add(new InputHumanSkillStateSystem(contexts));
         }
     }
 }

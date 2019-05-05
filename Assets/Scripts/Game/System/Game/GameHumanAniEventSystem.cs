@@ -43,7 +43,7 @@ namespace Game {
         private void ReplaceData(string name, PlayerBehaviourIndex behavior, BehaviorState state) {
             string key = behavior.ToString().ToLower();
             if (name.Contains(key)) {
-                Debug.Log("ReplaceData:" +behavior);
+                // Debug.Log("ReplaceData:" +behavior);
                 _contexts.game.ReplaceGameHumanBehaviourState(behavior, state);
             }
         }

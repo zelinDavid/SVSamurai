@@ -27,11 +27,13 @@ namespace Game {
         }
 
         void InitManager() {
+            ModelManager.Single.Init();
+
             GameParentManager parentManager = transform.getOrAddComponent<GameParentManager>();
             parentManager.Init();
 
             var cameraTransform = parentManager.GetParentTrans(ParentName.CameraController);
-            Debug.Log("CameraController:" + cameraTransform);
+            // Debug.Log("CameraController:" + cameraTransform);
             CameraCtroller cameraCtroller = cameraTransform.getOrAddComponent<CameraCtroller>();
             GameEntity entity = _contexts.game.SetGameCameraState(CameraAniName.NULL);
             cameraCtroller.Init(_contexts, entity);
@@ -39,7 +41,7 @@ namespace Game {
             _serviceManager = new ServiceManager(parentManager);
             _serviceManager.Init(_contexts);
 
-            ModelManager.Single.Init();
+            
 
             var uiControllerView = parentManager.GetParentTrans(ParentName.UIController);
             if (!uiControllerView.UtilDebugLogNull()) {

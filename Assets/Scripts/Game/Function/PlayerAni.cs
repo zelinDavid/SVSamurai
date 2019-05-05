@@ -25,8 +25,9 @@ namespace Game {
         }
 
         public void Attack(int skillCode) {
-            _animator.SetInteger(ConstValue.PLAYER_PARA_NAME, skillCode);
+            _animator.SetInteger(ConstValue.SKILL_PARA_NAME, skillCode);
             _animator.SetBool(ConstValue.IDLE_SWORD_PARA_NAME, true);
+            Debug.Log("attack:" + skillCode );
         }
 
         public void Idle() {

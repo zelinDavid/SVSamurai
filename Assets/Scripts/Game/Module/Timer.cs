@@ -196,8 +196,8 @@ namespace Module.Timer {
         }
 
         public void Stop(bool isComplete) {
-            Debug.Log("stop:" + isComplete + IsComplete);
-             if (IsComplete && isComplete)
+       
+             if (_onComplete != null && isComplete)
                 {
                     _onComplete?.Invoke();
                 }
@@ -338,7 +338,7 @@ namespace Module.Timer {
             if (_timersDic.ContainsKey(id)) {
                 return _timersDic[id];
             }
-            Debug.LogError("fail getTimer:" + id);
+            // Debug.LogError("fail getTimer:" + id);
             return null;
         }
 

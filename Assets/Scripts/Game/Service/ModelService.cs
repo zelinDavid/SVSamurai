@@ -35,7 +35,7 @@ namespace Game.Service
         }
 
         private void InitHumanSkillCoding(Contexts contexts){
-            var skillList = GEtValidList();
+            var skillList = GetValidList();
             var maxLength = GetMaxLength(skillList);
             contexts.game.SetGameHumanSkillConfig(skillList,maxLength);
 
@@ -53,7 +53,7 @@ namespace Game.Service
             return maxLength;
         }
 
-        private List<ValidHumanSkill> GEtValidList(){
+        private List<ValidHumanSkill> GetValidList(){
             SkillCodeModule skillCodeModule  = new SkillCodeModule();
             var skills = ModelManager.Single.HumanSkillModel.skills;
             List<ValidHumanSkill> skillList = new List<ValidHumanSkill>();

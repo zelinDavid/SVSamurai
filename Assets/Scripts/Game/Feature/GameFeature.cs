@@ -10,6 +10,7 @@ namespace Game {
         public void InitalizeFun(Contexts contexts) {
             Add(new GameInitGameSystem(contexts));
             Add(new GameHumanAniEventSystem(contexts));
+            Add(new SkillManagerSystem(contexts));
             
         }
  
@@ -20,8 +21,8 @@ namespace Game {
         public void TearDownFun(Contexts contexts) { }
 
         public void ReactiveSystemFun(Contexts contexts) {
-            //TODO:GamePlayHumanSkillSystem
             
+            Add(new GamePlayHumanSkillSystem(contexts));
             Add(new GameStartSystem(contexts));
             Add(new GamePauseSystem(contexts));
             Add(new GameEndSystem(contexts));

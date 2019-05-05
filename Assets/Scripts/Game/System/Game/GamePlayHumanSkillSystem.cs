@@ -22,7 +22,7 @@ namespace Game
                 _contexts.game.gamePlayer.Ani.Attack(0);
                 if (code > 0)
                 {
-                      _contexts.game.gamePlayer.Audio.Attack(code);
+                    _contexts.game.gamePlayer.Audio.Attack(code);
                     _contexts.game.gamePlayer.Behavior.Attack(code);
                 }
             }

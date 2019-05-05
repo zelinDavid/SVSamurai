@@ -17,7 +17,7 @@ namespace Game {
             }
            
             //TODO: 自定义模块的timer调用.
-            Debug.Log("InputNullSystem");
+            // Debug.Log("InputNullSystem");
         }
 
         protected override bool Filter(InputEntity entity) {
@@ -44,7 +44,7 @@ namespace Game {
             //TODO:播放ani动画
             (_contexts.game.gamePlayer.Ani as PlayerAni).Move();
 
-            Debug.Log("InputForwardButtonSystem");
+            // Debug.Log("InputForwardButtonSystem");
         }
 
     }
@@ -62,7 +62,7 @@ namespace Game {
         protected override void Execute(List<InputEntity> entities) {
             _contexts.game.gamePlayer.Behavior.TurnBack();
             _contexts.game.gamePlayer.Ani.Move();
-            Debug.Log("InputBackButtonSystem");
+            // Debug.Log("InputBackButtonSystem");
 
         }
     }
@@ -80,7 +80,7 @@ namespace Game {
         protected override void Execute(List<InputEntity> entities) {
             _contexts.game.gamePlayer.Behavior.TurnLeft();
             _contexts.game.gamePlayer.Ani.Move();
-            Debug.Log("InputLeftButtonSystem");
+            // Debug.Log("InputLeftButtonSystem");
 
         }
     }
@@ -98,7 +98,7 @@ namespace Game {
         protected override void Execute(List<InputEntity> entities) {
             _contexts.game.gamePlayer.Behavior.TurnRight();
             _contexts.game.gamePlayer.Ani.Move();
-            Debug.Log("InputRightButtonSystem");
+            // Debug.Log("InputRightButtonSystem");
 
         }
     }
@@ -118,19 +118,17 @@ namespace Game {
 
         protected override void Execute(List<InputEntity> entities) {
             var service = _contexts.service.gameServiceTimerService.TimerService.CreateTimer(TimerId.MOVE_TIMER, 1, false);
-            Debug.Log("serviceExecute:" + service);
+            // Debug.Log("serviceExecute:" + service);
             if (service != null)
             {
                 service.AddCompleteListener(()=> {
                     _contexts.game.gamePlayer.Ani.IsRun = true;
                     _contexts.game.gamePlayer.Audio.IsRun = true;
-                    Debug.Log("timeService listen complete");
+                    // Debug.Log("timeService listen complete");
 
                 });
             }
-           
-            Debug.Log("InputMoveButtonSystem");
-
+            // Debug.Log("InputMoveButtonSystem");
         }
     }
 

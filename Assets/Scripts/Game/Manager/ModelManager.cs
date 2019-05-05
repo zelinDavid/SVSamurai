@@ -21,6 +21,7 @@ namespace Game
             HumanSkillModel = ConfigManager.Single.LoadJson<HumanSkillModel>(ConfigPath.HUMAN_SKILL_CONFIG);
             EnemyModel = ConfigManager.Single.LoadJson<EnemyModel>(ConfigPath.ENEMY_CONFIG);
             SpawnEnemyModel = ConfigManager.Single.LoadJson<SpawnEnemyModel>(ConfigPath.SPAWN_ENEMY_CONFIG);
+            // Debug.Log("ModelManager:" + HumanSkillModel);
          }
     }
 }

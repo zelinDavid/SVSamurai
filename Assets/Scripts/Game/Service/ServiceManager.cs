@@ -43,7 +43,9 @@ namespace Game.Service {
                 new UnityInputService(),
                 new LoadService(parentManager),
                 new TimerService(new TimerManager()),
-
+                new SkillCodeService(),
+                new ConfigModelService(),
+                
             };
             return services;
         }

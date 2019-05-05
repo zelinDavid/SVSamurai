@@ -36,7 +36,7 @@ namespace Game {
         }
 
         public void Attack(int skillCode) {
-            throw new System.NotImplementedException();
+            IsAttack = true;
         }
 
         public void Idle() {

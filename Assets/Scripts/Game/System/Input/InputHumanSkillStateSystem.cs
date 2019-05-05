@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Entitas;
 using Game.Service;
+using UnityEngine;
 
 namespace Game {
     /*
@@ -27,10 +28,12 @@ namespace Game {
 
         protected override void Execute(List<InputEntity> entities) {
             foreach (InputEntity entity in entities) {
-                //TODO:这个地方逻辑没有搞清楚
                 ITimerService timerService = _contexts.service.gameServiceTimerService.TimerService;
                 var timer = timerService.CreatOrRestartTimer(TimerId.JUDGE_SKILL_TIMER, 0.2f, false);
-                timer.AddCompleteListener(() => SetValid(entity, true));
+                timer.AddCompleteListener(() =>{
+                     SetValid(entity, true);
+                     Debug.Log("timercompletion");
+                });
                 SetValid(entity, false);
             }
         }
@@ -60,6 +63,9 @@ namespace Game {
                 timerService.StopTimer(timerService.GeTimer(TimerId.JUDGE_SKILL_TIMER) , false);
             }
             _contexts.input.ReplaceGameInputHumanSkillState(isValid, code);
+
+            Debug.Log("attackCode:" + code );
+            // Debug.Log("ReplaceValidHumanSkil:" + entity + isValid + skill);
         }
 
         private bool JudgeLength(int code) {
