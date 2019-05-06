@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Entitas;
+using UnityEngine;
 
 namespace Game
 {
@@ -19,7 +20,8 @@ namespace Game
 
                 //code为0时，代表重置
                 //code大于0时，才是正确的执行编码
-                _contexts.game.gamePlayer.Ani.Attack(0);
+                Debug.Log("GamePlayHumanSkillSystem attackCode:" + code);
+                _contexts.game.gamePlayer.Ani.Attack(code);
                 if (code > 0)
                 {
                     _contexts.game.gamePlayer.Audio.Attack(code);
@@ -30,7 +32,7 @@ namespace Game
 
         protected override bool Filter(GameEntity entity)
         {
-           return entity.hasGameEndHumanSkill;
+           return entity.hasGamePlayHumanSkill ;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)

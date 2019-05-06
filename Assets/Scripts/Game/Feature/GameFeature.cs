@@ -26,7 +26,8 @@ namespace Game {
             Add(new GameStartSystem(contexts));
             Add(new GamePauseSystem(contexts));
             Add(new GameEndSystem(contexts));
-
+            Add(new JudgeHumanSkillSystem(contexts));
+            
             Behaviour(contexts);
         }
 

@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
 
@@ -103,11 +104,11 @@ namespace Game {
             AnimatorStateMachine aniMachine = aniController.layers[0].stateMachine;
  
             SkillAniState tem = null;
-            foreach (ChildAnimatorState childState in aniMachine.states)
+            foreach (ChildAnimatorState childState in aniMachine.stateMachines[0].stateMachine.states)
             {
+                 tem = null;
                 foreach (StateMachineBehaviour behavior in childState.state.behaviours)
                 {
-                    tem = null;
                     if (behavior is SkillAniState)
                     {
                         tem = behavior as SkillAniState;
@@ -119,6 +120,7 @@ namespace Game {
                 {
                     int code = codeModule.GetSkillCode(childState.state.name, "attack", ""); //childState.state.name: attackXOOX
                     tem.name = code.ToString();
+                   
                 }
             }
  

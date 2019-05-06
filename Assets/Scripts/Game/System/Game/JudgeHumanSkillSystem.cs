@@ -24,6 +24,7 @@ namespace Game {
                 code = GetValidCode(code);
                 entity.ReplaceGameInputHumanSkillState(false, 0);
                 _contexts.game.ReplaceGameValidHumanSkill(code);
+                Debug.Log("JudgeHumanSkillSystem ValidHumanSkill:" + code);
             }
         }
 
@@ -46,9 +47,7 @@ namespace Game {
 
         private int GetLongValidCode(int code) {
             string codeString = code.ToString();
-            Debug.Log("GetLongValidCode before:" + codeString);
             codeString = codeString.Remove(codeString.Length - 1, 1);
-            Debug.Log("GetLongValidCode ret:" + codeString);
             return GetValidCode(int.Parse(codeString));
         }
 

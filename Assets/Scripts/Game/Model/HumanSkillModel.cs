@@ -7,7 +7,7 @@ namespace Model
     [Serializable]
     public class HumanSkillModel  
     {
-        public List<SkillModel> skills;
+        public List<SkillModel> Skills;
     }
 
     [Serializable]

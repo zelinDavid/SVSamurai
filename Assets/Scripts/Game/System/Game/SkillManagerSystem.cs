@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+
 using Entitas;
+
+using UnityEngine;
 
 namespace Game {
 
@@ -17,17 +20,17 @@ namespace Game {
         }
 
         public void Initialize() {
-            var  entity = _contexts.game.CreateEntity();
+            var entity = _contexts.game.CreateEntity();
             entity.AddGameAnyValidHumanSkillListener(this);
             entity.AddGameAnyEndHumanSkillListener(this);
         }
 
         public void OnGameAnyEndHumanSkill(GameEntity entity, int skillCode) {
-            if (_currentPlayingCode == skillCode)
-            {
+            Debug.Log("_currentPlayingCode == skillCode" + ( _currentPlayingCode == skillCode));
+            if (_currentPlayingCode == skillCode) {
                 bool playFailed = !PlaySkill();
-                if (playFailed)
-                {
+                if (playFailed) {
+                    Debug.Log("OnGameAnyEndHumanSkill playFailed" );
                     _contexts.game.ReplaceGamePlayHumanSkill(0);
                 }
             }
@@ -35,27 +38,27 @@ namespace Game {
 
         public void OnGameAnyValidHumanSkill(GameEntity entity, int skillCode) {
             AddCode(skillCode);
-            if (!_contexts.game.gamePlayer.Behavior.IsAttack)
-            {
-                PlaySkill();    
+            if (!_contexts.game.gamePlayer.Behavior.IsAttack) {
+                PlaySkill();
             }
         }
 
-        private bool PlaySkill(){
-            if (_codeCache.Count <= 0)
-            {
+        private bool PlaySkill() {
+            if (_codeCache.Count <= 0) {
                 return false;
             }
+            
             int code = _codeCache.Dequeue();
-             _currentPlayingCode = code;
-             _contexts.game.ReplaceGamePlayHumanSkill(_currentPlayingCode);
-             return true;
+            _currentPlayingCode = code;
+            _contexts.game.ReplaceGamePlayHumanSkill(_currentPlayingCode);
+            Debug.Log("playSkillll:" + code);
+            return true;
 
         }
 
-        private void AddCode(int skillCode){
-            if (_codeCache.Count < _cacheLengthMax)
-            {
+        private void AddCode(int skillCode) {
+            Debug.Log("addCode:"+ skillCode);
+            if (_codeCache.Count < _cacheLengthMax) {
                 _codeCache.Enqueue(skillCode);
             }
         }

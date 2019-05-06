@@ -55,7 +55,7 @@ namespace Game.Service
 
         private List<ValidHumanSkill> GetValidList(){
             SkillCodeModule skillCodeModule  = new SkillCodeModule();
-            var skills = ModelManager.Single.HumanSkillModel.skills;
+            var skills = ModelManager.Single.HumanSkillModel.Skills;
             List<ValidHumanSkill> skillList = new List<ValidHumanSkill>();
 
             int temCode = 0;
