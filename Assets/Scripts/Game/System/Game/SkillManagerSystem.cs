@@ -26,14 +26,15 @@ namespace Game {
         }
 
         public void OnGameAnyEndHumanSkill(GameEntity entity, int skillCode) {
-            Debug.Log("_currentPlayingCode == skillCode" + ( _currentPlayingCode == skillCode));
+            // Debug.Log("_currentPlayingCode == skillCode" + ( _currentPlayingCode == skillCode));
             if (_currentPlayingCode == skillCode) {
                 bool playFailed = !PlaySkill();
                 if (playFailed) {
-                    Debug.Log("OnGameAnyEndHumanSkill playFailed" );
+         
                     _contexts.game.ReplaceGamePlayHumanSkill(0);
                 }
             }
+ 
         }
 
         public void OnGameAnyValidHumanSkill(GameEntity entity, int skillCode) {
@@ -51,7 +52,7 @@ namespace Game {
             int code = _codeCache.Dequeue();
             _currentPlayingCode = code;
             _contexts.game.ReplaceGamePlayHumanSkill(_currentPlayingCode);
-            Debug.Log("playSkillll:" + code);
+            // Debug.Log("playSkillll:" + code);
             return true;
 
         }

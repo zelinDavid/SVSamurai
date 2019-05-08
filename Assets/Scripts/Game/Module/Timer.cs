@@ -274,10 +274,13 @@ namespace Module.Timer {
         public ITimer CreateTimer(string id, float duration, bool loop) {
             ITimer timer = null;
             if (_timersDic.ContainsKey(id)) {
-                timer = _timersDic[id];
-                if (timer.IsTiming == false) {
-                    ResetTimer(timer, id, duration, loop);
-                } else {
+                 timer = _timersDic[id];
+                if (!timer.IsTiming)
+                {
+                    ResetTimer(timer,id, duration, loop);
+                }
+                else
+                {
                     return null;
                 }
             } else {
@@ -328,7 +331,7 @@ namespace Module.Timer {
 
         public ITimer CreatOrRestartTimer(string id, float duration, bool loop) {
             var timer = CreateTimer(id, duration, loop);
-            if (timer != null) {
+            if (timer == null) {
                 timer = ResetTimerData(id, duration, loop);
             }
             return timer;

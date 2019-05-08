@@ -31,11 +31,11 @@ namespace Game {
                 ITimerService timerService = _contexts.service.gameServiceTimerService.TimerService;
                 var timer = timerService.CreatOrRestartTimer(TimerId.JUDGE_SKILL_TIMER, 0.2f, false);
                 timer.AddCompleteListener(() =>{
-                    //  SetValid(entity, true);
+                     SetValid(entity, true);
                      Debug.Log("timercompletion");
                 });
                 SetValid(entity, false);
-                SetValid(entity, true);
+            
             }
         }
 
@@ -52,6 +52,7 @@ namespace Game {
 
             if (!isValid) {
                 isValid = JudgeLength(code);
+                Debug.Log("JudgeLength:" + isValid +" code:" + code);
             }
             if (!isValid) {
                 code = _contexts.service
@@ -60,6 +61,7 @@ namespace Game {
 
             if (isValid)
             {
+            
                 ITimerService timerService = _contexts.service.gameServiceTimerService.TimerService;
                 timerService.StopTimer(timerService.GeTimer(TimerId.JUDGE_SKILL_TIMER) , false);
             }

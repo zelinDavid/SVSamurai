@@ -20,7 +20,7 @@ namespace Game
 
                 //code为0时，代表重置
                 //code大于0时，才是正确的执行编码
-                Debug.Log("GamePlayHumanSkillSystem attackCode:" + code);
+                // Debug.Log("GamePlayHumanSkillSystem attackCode:" + code);
                 _contexts.game.gamePlayer.Ani.Attack(code);
                 if (code > 0)
                 {

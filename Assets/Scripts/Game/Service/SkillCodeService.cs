@@ -11,13 +11,13 @@ namespace Game.Service {
     public class SkillCodeService : ISkillCodeService {
         private SkillCodeModule _skillCode;
         public int GetCurrentSkillcode(InputButton button, int currentCode) {
-            // Debug.Log("GetCurrentSkillcode before:" + currentCode);
+            Debug.Log("GetCurrentSkillcode before:" + currentCode);
             if (button == InputButton.ATTACK_O) {
                 currentCode = _skillCode.GetCurrentSkillCode(SkillButton.O, currentCode);
             } else if (button == InputButton.ATTACK_X) {
                 currentCode = _skillCode.GetCurrentSkillCode(SkillButton.X, currentCode);
             }
-            // Debug.Log("GetCurrentSkillcode ret:" + currentCode);
+            Debug.Log("GetCurrentSkillcode ret:" + currentCode);
             return currentCode;
  
         }
