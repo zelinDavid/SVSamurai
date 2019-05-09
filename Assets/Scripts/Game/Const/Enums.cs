@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -137,7 +138,8 @@ namespace Game
         /// <summary>
         /// 判断人物技能是否有效计时器
         /// </summary>
-        JUDGE_SKILL_TIMER
+        JUDGE_SKILL_TIMER,
+        SKILL_VIEW,
     }
 
     /// <summary>
@@ -170,4 +172,7 @@ namespace Game
         /// </summary>
         EnemyMiniBoss
     }
+
+ 
+ 
 }

@@ -17,7 +17,9 @@ namespace Game
         /// <summary>
         /// 敌方预制路径
         /// </summary>
-        public const string ENEMY_PATH =  "Enemies/";
+ 
+    
+
    } 
    
 }

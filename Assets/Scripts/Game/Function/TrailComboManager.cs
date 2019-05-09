@@ -89,6 +89,7 @@ namespace Game.View {
         public void OnGameAnyStartHumanSkill(GameEntity entity, int skillCode)
         {
             ShowTrails(skillCode);
+             
         }
     }
 }
