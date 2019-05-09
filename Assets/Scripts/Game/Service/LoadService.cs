@@ -1,7 +1,8 @@
 using Manager;
 using UnityEngine;
 using Game;
-
+using Util;
+using Game.View;
 
 namespace Game.Service {
     /*
@@ -51,11 +52,7 @@ namespace Game.Service {
             return LoadManager.Single.LoadAndInstaniate(path, parent);
 
         }
-
-        public void LoadEnemy(string enemeyName, Transform parent) {
-            throw new System.NotImplementedException();
-        }
-
+ 
         /*
         实例化player;添加 IgnorForce PlayerCollider 组件；
         添加 playerView
@@ -91,7 +88,23 @@ namespace Game.Service {
 
             //TODO： 玩家动画暂不添加
             view.Init(Contexts.sharedInstance, entity);
+            LoadTrails(player.transform, animator);
 
         }
+
+        private void LoadTrails(Transform player, Animator animator)
+        {
+            var trails = LoadAndInstaniate(Path.TRAILS_COMBO_PREFAB, player);
+            var manager = trails.transform.getOrAddComponent<TrailComboManager>();
+            var entity = Contexts.sharedInstance.game.CreateEntity();
+            manager.Init(Contexts.sharedInstance, entity, animator);
+        }
+
+        public void LoadEnemy(string enemyName,Transform parent)
+        {
+            var enemy = LoadAndInstaniate(Path.ENEMY_PATH + enemyName, parent);
+        }
+        
+
     }
 }
